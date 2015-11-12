@@ -118,11 +118,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Hexo提交文章到github 错误" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Hexo中发布带有图片的文章到Github" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/12/Hexo提交文章到github 错误/" class="article-date">
-  	<time datetime="2015-11-12T09:15:33.000Z" itemprop="datePublished">2015-11-12</time>
+      <a href="/2015/11/12/Hexo中发布带有图片的文章到Github/" class="article-date">
+  	<time datetime="2015-11-12T09:20:08.000Z" itemprop="datePublished">2015-11-12</time>
 </a>
     </div>
   
@@ -133,11 +133,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Hexo提交文章到github_错误Please_make_sure_you_have_the_correct_access_rights_and_the_repository_exists-">Hexo提交文章到github 错误Please make sure you have the correct access rights and the repository exists.</h1><hr>
-<p><strong>- 错误信息：
-</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Permission denied (publickey).</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure></p>
-<p><strong>- 解决办法：
-</strong><br>编辑hexo的_config.yml文件<br>将：repo: git@github.com:username/username.github.io.git<br>修改为：repo: <a href="https://github.com/username/username.github.io.git" target="_blank" rel="external">https://github.com/username/username.github.io.git</a> </p>
+        <h1 id="Hexo中发布带有图片的文章到Github">Hexo中发布带有图片的文章到Github</h1><hr>
+<p><strong>1.在hexo目录下的source文件夹中新建文件夹images，在images文件夹中添加所需要的图片。</strong></p>
+<p><strong>2.在文章.md文件中只需要使用下面标签即可。
+</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![这是一张图片](/images/xxxx.png)</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.执行命令提交至Github
+</strong></p>
+<blockquote>
+<p> hexo clean<br>hexo d</p>
+</blockquote>
 
       
     </div>
@@ -162,11 +166,11 @@
 
 
   
-    <article id="post-Hexo中发布带有图片的文章到Github" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Hexo提交文章到github 错误" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/12/Hexo中发布带有图片的文章到Github/" class="article-date">
-  	<time datetime="2015-11-12T09:09:36.000Z" itemprop="datePublished">2015-11-12</time>
+      <a href="/2015/11/12/Hexo提交文章到github 错误/" class="article-date">
+  	<time datetime="2015-11-12T09:15:33.000Z" itemprop="datePublished">2015-11-12</time>
 </a>
     </div>
   
@@ -177,10 +181,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Hexo中发布带有图片的文章到Github">Hexo中发布带有图片的文章到Github</h1><hr>
-<p><strong>1.在hexo目录下的source文件夹中新建文件夹images，在images文件夹中添加所需要的图片。</strong></p>
-<p><strong>2.在文章.md文件中只需要使用下面标签即可。
-</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![这是一张图片](/images/xxxx.png)</span><br></pre></td></tr></table></figure></p>
+        <h1 id="Hexo提交文章到github_错误Please_make_sure_you_have_the_correct_access_rights_and_the_repository_exists-">Hexo提交文章到github 错误Please make sure you have the correct access rights and the repository exists.</h1><hr>
+<p><strong>- 错误信息：
+</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Permission denied (publickey).</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure></p>
+<p><strong>- 解决办法：
+</strong><br>编辑hexo的_config.yml文件<br>将：repo: git@github.com:username/username.github.io.git<br>修改为：repo: <a href="https://github.com/username/username.github.io.git" target="_blank" rel="external">https://github.com/username/username.github.io.git</a> </p>
 
       
     </div>
