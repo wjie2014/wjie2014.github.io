@@ -118,11 +118,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-hexo发布博客到github，其他文件被删除问题解决副本" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-升级到Xcode 7和IOS9带来的一些问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决副本/" class="article-date">
-  	<time datetime="2015-11-12T08:16:11.000Z" itemprop="datePublished">2015-11-12</time>
+      <a href="/2015/11/12/升级到Xcode 7和IOS9带来的一些问题/" class="article-date">
+  	<time datetime="2015-11-12T08:41:39.000Z" itemprop="datePublished">2015-11-12</time>
 </a>
     </div>
   
@@ -147,8 +147,7 @@
 <blockquote>
 <p>iOS9让所有的HTTP默认使用了HTTPS，原来的HTTP协议传输都改成TLS1.2协议进行传输。直接造成的情况就是App发请求的时候弹出网络无法连接。解决办法就是在项目的info.plist<br>文件里加上如下节点： NSAppTransportSecurity - NSAllowsArbitraryLoads<br>这个子节点的意思是：是否允许任性的加载？！<br>设为YES的话就将禁用了AppTransportSecurity转而使用用户自定义的设置，这个问题就解决了。</p>
 </blockquote>
-<p><img src="http://202.119.81.147:8001/attachment/camera/201511/2015111222222200000501.jpg" alt="此处输入图片的描述"></p>
-<p><strong>2.运行时bitcode报错</strong></p>
+<p><img src="/images/000003.png" alt="这是一张图片"><br><strong>2.运行时bitcode报错</strong></p>
 <ul>
 <li>错误信息：</li>
 </ul>
@@ -161,8 +160,9 @@
 <blockquote>
 <p>禁用bitcode，选为NO.(iOS中bitcode是默认YES，watchOS中bitcodes是不让改的必须YES。</p>
 </blockquote>
+<p><img src="/images/000002.png" alt="这是一张图片"></p>
 <p>问题的原因：bitcode的理解应该是把程序编译成的一种过渡代码，然后苹果再把这个过渡代码编译成可执行的程序。bitcode也允许苹果在后期重新优化我们程序的二进制文件，有类似于App瘦身的思想。某些第三方库还不支持bitcode。要不然是等待库的开发者升级了此项功能我们更新库，要不就是把这个bitcode禁用。</p>
-<p> <strong>3.第三方分享功能报错canOpenURL</strong></p>
+<p><strong>3.第三方分享功能报错canOpenURL</strong></p>
 <ul>
 <li>错误信息：</li>
 </ul>
@@ -174,20 +174,11 @@
 <li>解决办法：</li>
 </ul>
 <p>在info.plist中添加：</p>
-<pre><code><span class="tag">&lt;<span class="title">key</span>&gt;</span>LSApplicationQueriesSchemes<span class="tag">&lt;/<span class="title">key</span>&gt;</span>
-<span class="tag">&lt;<span class="title">array</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqbrowser<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqq<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqapi<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV2<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>weixin<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>wechat<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>wtloginmqq2<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV3<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqwpa<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">array</span>&gt;</span>
-</code></pre><ul>
-<li>添加后如下图：<br><img src="http://202.119.81.147:8001/attachment/camera/201511/2015111222222200000501.jpg" alt="此处输入图片的描述"></li>
+<p><key>LSApplicationQueriesSchemes</key></p>
+<array><br><string>mqqbrowser</string><br><string>mqq</string><br><string>mqqapi</string><br><string>mqqopenSDKapiV2</string><br><string>weixin</string><br><string>wechat</string><br><string>wtloginmqq2</string><br><string>mqqopenSDKapiV3</string><br><string>mqqwpa</string><br></array>
+
+<ul>
+<li>添加后如下图：<br><img src="/images/000001.png" alt="这是一张图片"></li>
 </ul>
 
       
