@@ -5,15 +5,15 @@
   
   <title>北京学优乐科技有限公司</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="北京学优乐科技有限公司的技术博客，目前主推产品课上课下，官方网址是http://www.ikskx.com">
 <meta property="og:type" content="website">
 <meta property="og:title" content="北京学优乐科技有限公司">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="北京学优乐科技有限公司">
-<meta property="og:description">
+<meta property="og:description" content="北京学优乐科技有限公司的技术博客，目前主推产品课上课下，官方网址是http://www.ikskx.com">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="北京学优乐科技有限公司">
-<meta name="twitter:description">
+<meta name="twitter:description" content="北京学优乐科技有限公司的技术博客，目前主推产品课上课下，官方网址是http://www.ikskx.com">
   
     <link rel="alternative" href="/atom.xml" title="北京学优乐科技有限公司" type="application/atom+xml">
   
@@ -41,46 +41,6 @@
 		
 
 		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
 
 		<div class="switch-area">
 			<div class="switch-wrap">
@@ -103,46 +63,14 @@
 					        
 								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
 					        
-								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
-					        
 						</div>
 					</nav>
 				</section>
 				
 				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						
-					</div>
-				</section>
 				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
-			        
-			        </div>
-				</section>
 				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
 				
 			</div>
 		</div>
@@ -183,14 +111,107 @@
 			        
 						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
-			        
 				</div>
 			</nav>
 		</header>				
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-hexo发布博客到github，其他文件被删除问题解决副本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决副本/" class="article-date">
+  	<time datetime="2015-11-12T08:16:11.000Z" itemprop="datePublished">2015-11-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="升级到Xcode_7和IOS9带来的一些问题">升级到Xcode 7和IOS9带来的一些问题</h1><hr>
+<p><strong>1.无法访问http协议的地址</strong></p>
+<ul>
+<li>错误信息：</li>
+</ul>
+<blockquote>
+<p>The resource could not be loaded because the App Transport Security<br>policy requires the use of a secure connection.</p>
+</blockquote>
+<ul>
+<li>解决办法：</li>
+</ul>
+<blockquote>
+<p>iOS9让所有的HTTP默认使用了HTTPS，原来的HTTP协议传输都改成TLS1.2协议进行传输。直接造成的情况就是App发请求的时候弹出网络无法连接。解决办法就是在项目的info.plist<br>文件里加上如下节点： NSAppTransportSecurity - NSAllowsArbitraryLoads<br>这个子节点的意思是：是否允许任性的加载？！<br>设为YES的话就将禁用了AppTransportSecurity转而使用用户自定义的设置，这个问题就解决了。</p>
+</blockquote>
+<p><img src="http://202.119.81.147:8001/attachment/camera/201511/2015111222222200000501.jpg" alt="此处输入图片的描述"></p>
+<p><strong>2.运行时bitcode报错</strong></p>
+<ul>
+<li>错误信息：</li>
+</ul>
+<blockquote>
+<p>XXXX’ does not contain bitcode. You must rebuild it with bitcode<br>enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from<br>the vendor, or disable bitcode for this target. for architecture arm64</p>
+</blockquote>
+<ul>
+<li>解决办法：</li>
+</ul>
+<blockquote>
+<p>禁用bitcode，选为NO.(iOS中bitcode是默认YES，watchOS中bitcodes是不让改的必须YES。</p>
+</blockquote>
+<p>问题的原因：bitcode的理解应该是把程序编译成的一种过渡代码，然后苹果再把这个过渡代码编译成可执行的程序。bitcode也允许苹果在后期重新优化我们程序的二进制文件，有类似于App瘦身的思想。某些第三方库还不支持bitcode。要不然是等待库的开发者升级了此项功能我们更新库，要不就是把这个bitcode禁用。</p>
+<p> <strong>3.第三方分享功能报错canOpenURL</strong></p>
+<ul>
+<li>错误信息：</li>
+</ul>
+<p>qq／微信分享功能报错如下：</p>
+<blockquote>
+<p>-canOpenURL: failed for URL: “mqq://“ - error: “This app is not allowed to query for scheme mqq”</p>
+</blockquote>
+<ul>
+<li>解决办法：</li>
+</ul>
+<p>在info.plist中添加：</p>
+<pre><code><span class="tag">&lt;<span class="title">key</span>&gt;</span>LSApplicationQueriesSchemes<span class="tag">&lt;/<span class="title">key</span>&gt;</span>
+<span class="tag">&lt;<span class="title">array</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqbrowser<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqq<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqapi<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV2<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>weixin<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>wechat<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>wtloginmqq2<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV3<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqwpa<span class="tag">&lt;/<span class="title">string</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">array</span>&gt;</span>
+</code></pre><ul>
+<li>添加后如下图：<br><img src="http://202.119.81.147:8001/attachment/camera/201511/2015111222222200000501.jpg" alt="此处输入图片的描述"></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-hexo发布博客到github，其他文件被删除问题解决" class="article article-type-post" itemscope itemprop="blogPost">
   
