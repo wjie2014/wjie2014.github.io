@@ -38,7 +38,7 @@ iOS9让所有的HTTP默认使用了HTTPS，原来的H">
 <meta property="og:image" content="http://yoursite.com/images/000003.png">
 <meta property="og:image" content="http://yoursite.com/images/000002.png">
 <meta property="og:image" content="http://yoursite.com/images/000001.png">
-<meta property="og:updated_time" content="2015-11-12T08:41:39.000Z">
+<meta property="og:updated_time" content="2015-11-12T08:53:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="北京学优乐科技有限公司">
 <meta name="twitter:description" content="升级到Xcode 7和IOS9带来的一些问题
@@ -160,7 +160,7 @@ iOS9让所有的HTTP默认使用了HTTPS，原来的H">
   
     <div class="article-meta">
       <a href="/2015/11/12/升级到Xcode 7和IOS9带来的一些问题/" class="article-date">
-  	<time datetime="2015-11-12T08:41:39.000Z" itemprop="datePublished">2015-11-12</time>
+  	<time datetime="2015-11-12T08:53:58.000Z" itemprop="datePublished">2015-11-12</time>
 </a>
     </div>
   
@@ -209,12 +209,9 @@ iOS9让所有的HTTP默认使用了HTTPS，原来的H">
 <p>-canOpenURL: failed for URL: “mqq://“ - error: “This app is not allowed to query for scheme mqq”</p>
 </blockquote>
 <ul>
-<li>解决办法：</li>
+<li>解决办法：<br>在info.plist中添加：</li>
 </ul>
-<p>在info.plist中添加：</p>
-<p><key>LSApplicationQueriesSchemes</key></p>
-<array><br><string>mqqbrowser</string><br><string>mqq</string><br><string>mqqapi</string><br><string>mqqopenSDKapiV2</string><br><string>weixin</string><br><string>wechat</string><br><string>wtloginmqq2</string><br><string>mqqopenSDKapiV3</string><br><string>mqqwpa</string><br></array>
-
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>LSApplicationQueriesSchemes<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqbrowser<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqq<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqapi<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV2<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>weixin<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>wechat<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>wtloginmqq2<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV3<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqwpa<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>添加后如下图：<br><img src="/images/000001.png" alt="这是一张图片"></li>
 </ul>
