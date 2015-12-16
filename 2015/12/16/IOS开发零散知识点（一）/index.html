@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/12/16/IOS开发零散知识点（一）/index.html">
 <meta property="og:site_name" content="北京学优乐科技有限公司">
 <meta property="og:description" content="1.iOS UItableview 一句话去掉多余的分割线,在 viewDidLoad方法中添加下面这句话1//&amp;#19968;&amp;#21477;&amp;#35805;&amp;#21435;&amp;#25481;&amp;#22810;&amp;#20313;&amp;#30340;&amp;#20998;&amp;#21106;&amp;#32447;&amp;#10;self.homeWorkTableView.tableFooterView = [[UIView a">
-<meta property="og:updated_time" content="2015-12-16T08:52:33.000Z">
+<meta property="og:updated_time" content="2015-12-16T08:53:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS开发零散知识点（一）">
 <meta name="twitter:description" content="1.iOS UItableview 一句话去掉多余的分割线,在 viewDidLoad方法中添加下面这句话1//&amp;#19968;&amp;#21477;&amp;#35805;&amp;#21435;&amp;#25481;&amp;#22810;&amp;#20313;&amp;#30340;&amp;#20998;&amp;#21106;&amp;#32447;&amp;#10;self.homeWorkTableView.tableFooterView = [[UIView a">
@@ -121,7 +121,7 @@
   
     <div class="article-meta">
       <a href="/2015/12/16/IOS开发零散知识点（一）/" class="article-date">
-  	<time datetime="2015-12-16T08:52:34.000Z" itemprop="datePublished">2015-12-16</time>
+  	<time datetime="2015-12-16T08:53:41.000Z" itemprop="datePublished">2015-12-16</time>
 </a>
     </div>
   
@@ -152,9 +152,9 @@
       
         <h4 id="1-iOS_UItableview_一句话去掉多余的分割线,在_viewDidLoad方法中添加下面这句话">1.iOS UItableview 一句话去掉多余的分割线,在 viewDidLoad方法中添加下面这句话</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#19968;&#21477;&#35805;&#21435;&#25481;&#22810;&#20313;&#30340;&#20998;&#21106;&#32447;&#10;self.homeWorkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];</span><br></pre></td></tr></table></figure>
 <h4 id="2-_设置下一个界面的返回按钮显示为“返回”">2. 设置下一个界面的返回按钮显示为“返回”</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];&#10;temporaryBarButtonItem.title = @&#34;&#36820;&#22238;&#34;;&#10;self.navigationItem.backBarButtonItem = temporaryBarButtonItem;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="3-设置navigationController-navigationBar_title的颜色">3.设置navigationController.navigationBar title的颜色</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIColor * color = [UIColorwhiteColor];&#10;//&#36825;&#37324;&#25105;&#20204;&#35774;&#32622;&#30340;&#26159;&#39068;&#33394;&#65292;&#36824;&#21487;&#20197;&#35774;&#32622;shadow&#31561;&#65292;&#20855;&#20307;&#21487;&#20197;&#21442;&#35265;api&#10;NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];&#10;//&#22823;&#21151;&#21578;&#25104;&#10;self.navigationController.navigationBar.titleTextAttributes = dict;</span><br></pre></td></tr></table></figure>
 <h4 id="4-设置UItableviewcell点击不变色">4.设置UItableviewcell点击不变色</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;cell.selectionStyle = UITableViewCellSelectionStyleNone;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <h4 id="5-时间戳转格式化时间字符串_1444439436000_—&gt;_2015-09-14_10:13:45">5.时间戳转格式化时间字符串 1444439436000 —&gt; 2015-09-14 10:13:45</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *startTime = [showStr objectForKey:@&#34;startTime&#34;];&#10;NSDate *endTimesp = [NSDate dateWithTimeIntervalSince1970:endTimeNumber/1000];&#10;NSDate *endTimesp = [NSDate dateWithTimeIntervalSince1970:endTimeNumber/1000];&#10;//&#23454;&#20363;&#21270;&#19968;&#20010;NSDateFormatter&#23545;&#35937;&#10;NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];&#10;//&#35774;&#23450;&#26102;&#38388;&#26684;&#24335;,&#36825;&#37324;&#21487;&#20197;&#35774;&#32622;&#25104;&#33258;&#24049;&#38656;&#35201;&#30340;&#26684;&#24335;&#10;[dateFormatter setDateFormat:@&#34;yyyy-MM-dd HH:mm:ss&#34;];&#10;NSString *currentStartTimeStr = [dateFormatter stringFromDate:startTimesp];</span><br></pre></td></tr></table></figure>
 <h4 id="6-navigationController_UIBarButtonItem-rightBarButtonItem设置图片的方法：">6.navigationController UIBarButtonItem.rightBarButtonItem设置图片的方法：</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(goPublish)];&#10;self.navigationItem.rightBarButtonItem = anotherButton;</span><br></pre></td></tr></table></figure>
 <h4 id="7-navigationController_UIBarButtonItem-rightBarButtonItem设置文字的方法：">7.navigationController UIBarButtonItem.rightBarButtonItem设置文字的方法：</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@&#34;&#21382;&#21490;&#34; style:UIBarButtonItemStylePlain target:self action:@selector(goHistory)];&#10;self.navigationItem.rightBarButtonItem = anotherButton;</span><br></pre></td></tr></table></figure>

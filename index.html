@@ -122,7 +122,7 @@
   
     <div class="article-meta">
       <a href="/2015/12/16/IOS开发零散知识点（一）/" class="article-date">
-  	<time datetime="2015-12-16T08:52:34.000Z" itemprop="datePublished">2015-12-16</time>
+  	<time datetime="2015-12-16T08:53:41.000Z" itemprop="datePublished">2015-12-16</time>
 </a>
     </div>
   
@@ -146,8 +146,6 @@
       
         <h4 id="1-iOS_UItableview_一句话去掉多余的分割线,在_viewDidLoad方法中添加下面这句话">1.iOS UItableview 一句话去掉多余的分割线,在 viewDidLoad方法中添加下面这句话</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#19968;&#21477;&#35805;&#21435;&#25481;&#22810;&#20313;&#30340;&#20998;&#21106;&#32447;&#10;self.homeWorkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];</span><br></pre></td></tr></table></figure>
 <h4 id="2-_设置下一个界面的返回按钮显示为“返回”">2. 设置下一个界面的返回按钮显示为“返回”</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];&#10;temporaryBarButtonItem.title = @&#34;&#36820;&#22238;&#34;;&#10;self.navigationItem.backBarButtonItem = temporaryBarButtonItem;</span><br></pre></td></tr></table></figure>
-<h4 id="3-设置navigationController-navigationBar_title的颜色">3.设置navigationController.navigationBar title的颜色</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIColor * color = [UIColorwhiteColor];&#10;//&#36825;&#37324;&#25105;&#20204;&#35774;&#32622;&#30340;&#26159;&#39068;&#33394;&#65292;&#36824;&#21487;&#20197;&#35774;&#32622;shadow&#31561;&#65292;&#20855;&#20307;&#21487;&#20197;&#21442;&#35265;api&#10;NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];&#10;//&#22823;&#21151;&#21578;&#25104;&#10;self.navigationController.navigationBar.titleTextAttributes = dict;</span><br></pre></td></tr></table></figure>
-<h4 id="4-设置UItableviewcell点击不变色">4.设置UItableviewcell点击不变色</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;cell.selectionStyle = UITableViewCellSelectionStyleNone;</span><br></pre></td></tr></table></figure>
       
     </div>
     
