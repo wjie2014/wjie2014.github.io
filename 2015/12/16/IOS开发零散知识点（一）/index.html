@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/12/16/IOS开发零散知识点（一）/index.html">
 <meta property="og:site_name" content="北京学优乐科技有限公司">
 <meta property="og:description" content="1.iOS UItableview 一句话去掉多余的分割线,在 viewDidLoad方法中添加下面这句话1//&amp;#19968;&amp;#21477;&amp;#35805;&amp;#21435;&amp;#25481;&amp;#22810;&amp;#20313;&amp;#30340;&amp;#20998;&amp;#21106;&amp;#32447;&amp;#10;self.homeWorkTableView.tableFooterView = [[UIView a">
-<meta property="og:updated_time" content="2015-12-16T08:53:41.000Z">
+<meta property="og:updated_time" content="2015-12-16T08:58:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS开发零散知识点（一）">
 <meta name="twitter:description" content="1.iOS UItableview 一句话去掉多余的分割线,在 viewDidLoad方法中添加下面这句话1//&amp;#19968;&amp;#21477;&amp;#35805;&amp;#21435;&amp;#25481;&amp;#22810;&amp;#20313;&amp;#30340;&amp;#20998;&amp;#21106;&amp;#32447;&amp;#10;self.homeWorkTableView.tableFooterView = [[UIView a">
@@ -121,7 +121,7 @@
   
     <div class="article-meta">
       <a href="/2015/12/16/IOS开发零散知识点（一）/" class="article-date">
-  	<time datetime="2015-12-16T08:53:41.000Z" itemprop="datePublished">2015-12-16</time>
+  	<time datetime="2015-12-16T08:58:11.000Z" itemprop="datePublished">2015-12-16</time>
 </a>
     </div>
   
@@ -175,7 +175,6 @@
 <h6 id="4）为textView设置委托">4）为textView设置委托</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">textView.delegate=self;</span><br></pre></td></tr></table></figure>
 <h4 id="16-UITextField设置return建点击隐藏键盘的方法">16.UITextField设置return建点击隐藏键盘的方法</h4><h6 id="1）设置return的类型-1">1）设置return的类型</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text.returnKeyType = UIReturnKeyDone;</span><br></pre></td></tr></table></figure>
 <h6 id="2）在ViewController中实现委托UITextFieldDelegate">2）在ViewController中实现委托UITextFieldDelegate</h6><h6 id="3）实现方法">3）实现方法</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)textFieldShouldReturn:(UITextField *)textField &#123;&#10;[textField resignFirstResponder];&#10;return NO;&#10;&#125;</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -183,6 +182,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          IOS多选折叠树（使用RATreeView实现）
+        
+      </div>
+    </a>
   
   
     <a href="/2015/12/15/UITextView添加placeholder灰色提示文字/" id="article-nav-older" class="article-nav-link-wrap">
