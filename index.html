@@ -122,6 +122,73 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Android通过Wifi调试程序" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/02/Android通过Wifi调试程序/" class="article-date">
+  	<time datetime="2016-03-02T07:45:49.000Z" itemprop="datePublished">2016-03-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/02/Android通过Wifi调试程序/">Android通过Wifi调试程序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：">很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：</h5><ol>
+<li>手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。</li>
+<li>进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-tools</li>
+<li>打开命令行 adb tcpip 5555<blockquote>
+<p> 以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>你会发现，手机顶端不在出现原先有的图标  你会发现，手机顶端不在出现原先有的图标</p>
+</blockquote>
+</li>
+<li>使电脑连接手机的wifi的地址<blockquote>
+<p>打开手机连接wifi的地方，并得到wifi的地址。我的为：192.168.1.129<br>接着在上次一个步骤的命令行中输入 adb connect 192.168.1.129<br>出现：connected to 192.168.1.129:5555 代表执行成功</p>
+</blockquote>
+</li>
+<li>现在你可以断开usb线了（其实在第三步后，就可以断开了），然后像往常run一个应用程序，即可。</li>
+<li>此时你的usb对于此手机已经作废，那么如何变成usb试调模式呢？也就是还原呢。<blockquote>
+<p>很简单，usb数据线连接，在同一个命令行。输入<br>adb usb<br>出现：restarting in USB mode 说明成功。<br>还原原来的状态。</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-加盐hash保存密码的正确方式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -655,107 +722,6 @@
 <ul>
 <li>注意：文中app请替换为自己的域名,wjie2014替换为自己的github名。</li>
 </ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-在hexo的博客系统中写一篇文章并发布到github" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/在hexo的博客系统中写一篇文章并发布到github/" class="article-date">
-  	<time datetime="2015-11-12T13:06:52.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/在hexo的博客系统中写一篇文章并发布到github/">在hexo的博客系统中写一篇文章并发布到github</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>（一）下面是写文章的一种方式</strong></p>
-<p>1.进去到项目的source/_posts文件夹，创建文件如：我的一篇文章.md。</p>
-<blockquote>
-<p>cd source/_posts</p>
-<p>touch 我的一篇文章.md</p>
-</blockquote>
-<p>2.hexo是支持markdown，使用在线markdown编辑器写好文章，全选文章copy，打开刚刚创建的文件，粘贴，保存。在浏览器上即可访问到刚刚添加的文章了。</p>
-<p>附：在线markdown地址：<a href="https://www.zybuluo.com/mdeditor#211364" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#211364</a></p>
-<p><strong>（二）发布hexo文章到github</strong></p>
-<p>1.创建github仓库</p>
-<ul>
-<li>名字必须是:   your_github_name.github.io </li>
-<li>例如我的github:     wjie2014.github.io<br>wjie2014是我的github账户的名称，必须注意这个，不要写错，否则是看不到发布的博客的。</li>
-</ul>
-<p>2.修改_config.yml</p>
-<ul>
-<li>编辑全局配置文件 _config.yml 中的 deploy 部分</li>
-</ul>
-<blockquote>
-<p>deploy:</p>
-<p>  type: git</p>
-<p>  repo: git@github.com:wjie2014/wjie2014.github.io.git</p>
-<p>  branch: master</p>
-</blockquote>
-<p>3.部署</p>
-<blockquote>
-<p>hexo clean//清理数据缓存，建议每次都清楚</p>
-<p>hexo d //部署</p>
-</blockquote>
-<ul>
-<li>部署成功的信息</li>
-</ul>
-<blockquote>
-<p>[info] Deploy done: github</p>
-</blockquote>
-<ul>
-<li>部署失败的信息</li>
-</ul>
-<blockquote>
-<p>ERROR Deployer not found: git</p>
-</blockquote>
-<ul>
-<li>解决办法：</li>
-</ul>
-<p>控制台依次运行命令</p>
-<blockquote>
-<p>npm install hexo-deployer-git –save</p>
-<p>hexo g</p>
-<p>hexo d</p>
-</blockquote>
-<p>4.在浏览器输入<a href="http://wjie2014.github.io/" target="_blank" rel="external">http://wjie2014.github.io/</a>就能看到网页了。</p>
 
       
     </div>

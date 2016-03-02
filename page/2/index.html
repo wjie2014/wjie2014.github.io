@@ -122,6 +122,107 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-在hexo的博客系统中写一篇文章并发布到github" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/12/在hexo的博客系统中写一篇文章并发布到github/" class="article-date">
+  	<time datetime="2015-11-12T13:06:52.000Z" itemprop="datePublished">2015-11-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/12/在hexo的博客系统中写一篇文章并发布到github/">在hexo的博客系统中写一篇文章并发布到github</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>（一）下面是写文章的一种方式</strong></p>
+<p>1.进去到项目的source/_posts文件夹，创建文件如：我的一篇文章.md。</p>
+<blockquote>
+<p>cd source/_posts</p>
+<p>touch 我的一篇文章.md</p>
+</blockquote>
+<p>2.hexo是支持markdown，使用在线markdown编辑器写好文章，全选文章copy，打开刚刚创建的文件，粘贴，保存。在浏览器上即可访问到刚刚添加的文章了。</p>
+<p>附：在线markdown地址：<a href="https://www.zybuluo.com/mdeditor#211364" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#211364</a></p>
+<p><strong>（二）发布hexo文章到github</strong></p>
+<p>1.创建github仓库</p>
+<ul>
+<li>名字必须是:   your_github_name.github.io </li>
+<li>例如我的github:     wjie2014.github.io<br>wjie2014是我的github账户的名称，必须注意这个，不要写错，否则是看不到发布的博客的。</li>
+</ul>
+<p>2.修改_config.yml</p>
+<ul>
+<li>编辑全局配置文件 _config.yml 中的 deploy 部分</li>
+</ul>
+<blockquote>
+<p>deploy:</p>
+<p>  type: git</p>
+<p>  repo: git@github.com:wjie2014/wjie2014.github.io.git</p>
+<p>  branch: master</p>
+</blockquote>
+<p>3.部署</p>
+<blockquote>
+<p>hexo clean//清理数据缓存，建议每次都清楚</p>
+<p>hexo d //部署</p>
+</blockquote>
+<ul>
+<li>部署成功的信息</li>
+</ul>
+<blockquote>
+<p>[info] Deploy done: github</p>
+</blockquote>
+<ul>
+<li>部署失败的信息</li>
+</ul>
+<blockquote>
+<p>ERROR Deployer not found: git</p>
+</blockquote>
+<ul>
+<li>解决办法：</li>
+</ul>
+<p>控制台依次运行命令</p>
+<blockquote>
+<p>npm install hexo-deployer-git –save</p>
+<p>hexo g</p>
+<p>hexo d</p>
+</blockquote>
+<p>4.在浏览器输入<a href="http://wjie2014.github.io/" target="_blank" rel="external">http://wjie2014.github.io/</a>就能看到网页了。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-使用hexo搭建团队的技术博客" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
