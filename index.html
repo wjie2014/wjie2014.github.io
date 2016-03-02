@@ -118,6 +118,65 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-加盐hash保存密码的正确方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/02/加盐hash保存密码的正确方式/" class="article-date">
+  	<time datetime="2016-03-02T07:15:49.000Z" itemprop="datePublished">2016-03-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/02/加盐hash保存密码的正确方式/">加盐hash保存密码的正确方式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>提醒：</li>
+</ul>
+<blockquote>
+<p>无论是web开发还是移动端开发，都会遇到设计用户系统的需求，用户系统最重要的方面就是如何保存用户的密码，通常大家会直接采用md5加密，md5加盐加密，sha1加密，sha1加盐加密等，虽然用户加密看起来很简单，但是会有很多人犯错，单纯的加密会有很多破解方式，如：字典暴力破解，双向查表等。 如果你打算自己写一段代码来进行密码hash，那么赶紧停下吧。这样太容易犯错了。这个提醒适用于每一个人，不要自己写密码的hash算法 ！关于保存密码的问题已经有了成熟的方案，那就是使用phpass或者本文提供的源码。</p>
+</blockquote>
+<ul>
+<li>Java Hash加密源码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.yibee.core.util;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">* Password Hashing With PasswordHash (http://crackstation.net/hashing-security.htm).</span><br><span class="line">* Copyright (c) 2013, Taylor Hornby</span><br><span class="line">* All rights reserved.</span><br><span class="line">*</span><br><span class="line">* Redistribution and use in source and binary forms, with or without</span><br><span class="line">* modification, are permitted provided that the following conditions are met:</span><br><span class="line">*</span><br><span class="line">* 1. Redistributions of source code must retain the above copyright notice,</span><br><span class="line">* this list of conditions and the following disclaimer.</span><br><span class="line">*</span><br><span class="line">* 2. Redistributions in binary form must reproduce the above copyright notice,</span><br><span class="line">* this list of conditions and the following disclaimer in the documentation</span><br><span class="line">* and/or other materials provided with the distribution.</span><br><span class="line">*</span><br><span class="line">* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"</span><br><span class="line">* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span><br><span class="line">* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span><br><span class="line">* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span><br><span class="line">* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span><br><span class="line">* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span><br><span class="line">* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span><br><span class="line">* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span><br><span class="line">* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span><br><span class="line">* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span><br><span class="line">* POSSIBILITY OF SUCH DAMAGE.</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.security.SecureRandom;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.PBEKeySpec;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKeyFactory;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.spec.InvalidKeySpecException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">* PasswordHash salted password hashing.</span><br><span class="line">* Author: havoc AT defuse.ca</span><br><span class="line">* www: http://crackstation.net/hashing-security.htm</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PasswordHash</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String PBKDF2_ALGORITHM = <span class="string">"PBKDF2WithHmacSHA1"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The following constants may be changed without breaking existing hashes.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SALT_BYTE_SIZE = <span class="number">24</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HASH_BYTE_SIZE = <span class="number">24</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PBKDF2_ITERATIONS = <span class="number">9999</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ITERATION_INDEX = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SALT_INDEX = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PBKDF2_INDEX = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Returns a salted PasswordHash hash of the password.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> password the password to hash</span><br><span class="line">* <span class="doctag">@return</span> a salted PasswordHash hash of the password</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">createHash</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"><span class="keyword">return</span> createHash(password.toCharArray());</span><br><span class="line">&#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">catch</span> (InvalidKeySpecException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Returns a salted PasswordHash hash of the password.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> password the password to hash</span><br><span class="line">* <span class="doctag">@return</span> a salted PasswordHash hash of the password</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">createHash</span><span class="params">(<span class="keyword">char</span>[] password)</span></span><br><span class="line"><span class="keyword">throws</span> NoSuchAlgorithmException, InvalidKeySpecException </span>&#123;</span><br><span class="line"><span class="comment">// Generate a random salt</span></span><br><span class="line">SecureRandom random = <span class="keyword">new</span> SecureRandom();</span><br><span class="line"><span class="keyword">byte</span>[] salt = <span class="keyword">new</span> <span class="keyword">byte</span>[SALT_BYTE_SIZE];</span><br><span class="line">random.nextBytes(salt);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Hash the password</span></span><br><span class="line"><span class="keyword">byte</span>[] hash = pbkdf2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);</span><br><span class="line"><span class="comment">// format iterations:salt:hash</span></span><br><span class="line"><span class="keyword">return</span> PBKDF2_ITERATIONS + <span class="string">":"</span> + toHex(salt) + <span class="string">":"</span> + toHex(hash);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Validates a password using a hash.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> password    the password to check</span><br><span class="line">* <span class="doctag">@param</span> correctHash the hash of the valid password</span><br><span class="line">* <span class="doctag">@return</span> true if the password is correct, false if not</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">validatePassword</span><span class="params">(String password, String correctHash)</span></span><br><span class="line"><span class="keyword">throws</span> NoSuchAlgorithmException, InvalidKeySpecException </span>&#123;</span><br><span class="line"><span class="keyword">return</span> validatePassword(password.toCharArray(), correctHash);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Validates a password using a hash.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> password    the password to check</span><br><span class="line">* <span class="doctag">@param</span> correctHash the hash of the valid password</span><br><span class="line">* <span class="doctag">@return</span> true if the password is correct, false if not</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">validatePassword</span><span class="params">(<span class="keyword">char</span>[] password, String correctHash)</span></span><br><span class="line"><span class="keyword">throws</span> NoSuchAlgorithmException, InvalidKeySpecException </span>&#123;</span><br><span class="line"><span class="comment">// Decode the hash into its parameters</span></span><br><span class="line">String[] params = correctHash.split(<span class="string">":"</span>);</span><br><span class="line"><span class="keyword">int</span> iterations = Integer.parseInt(params[ITERATION_INDEX]);</span><br><span class="line"><span class="keyword">byte</span>[] salt = fromHex(params[SALT_INDEX]);</span><br><span class="line"><span class="keyword">byte</span>[] hash = fromHex(params[PBKDF2_INDEX]);</span><br><span class="line"><span class="comment">// Compute the hash of the provided password, using the same salt,</span></span><br><span class="line"><span class="comment">// iteration count, and hash length</span></span><br><span class="line"><span class="keyword">byte</span>[] testHash = pbkdf2(password, salt, iterations, hash.length);</span><br><span class="line"><span class="comment">// Compare the hashes in constant time. The password is correct if</span></span><br><span class="line"><span class="comment">// both hashes match.</span></span><br><span class="line"><span class="keyword">return</span> slowEquals(hash, testHash);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Compares two byte arrays in length-constant time. This comparison method</span><br><span class="line">* is used so that password hashes cannot be extracted from an on-line</span><br><span class="line">* system using a timing attack and then attacked off-line.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> a the first byte array</span><br><span class="line">* <span class="doctag">@param</span> b the second byte array</span><br><span class="line">* <span class="doctag">@return</span> true if both byte arrays are the same, false if not</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">slowEquals</span><span class="params">(<span class="keyword">byte</span>[] a, <span class="keyword">byte</span>[] b)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> diff = a.length ^ b.length;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length &amp;&amp; i &lt; b.length; i++)</span><br><span class="line">diff |= a[i] ^ b[i];</span><br><span class="line"><span class="keyword">return</span> diff == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Computes the PasswordHash hash of a password.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> password   the password to hash.</span><br><span class="line">* <span class="doctag">@param</span> salt       the salt</span><br><span class="line">* <span class="doctag">@param</span> iterations the iteration count (slowness factor)</span><br><span class="line">* <span class="doctag">@param</span> bytes      the length of the hash to compute in bytes</span><br><span class="line">* <span class="doctag">@return</span> the PBDKF2 hash of the password</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] pbkdf2(<span class="keyword">char</span>[] password, <span class="keyword">byte</span>[] salt, <span class="keyword">int</span> iterations, <span class="keyword">int</span> bytes)</span><br><span class="line"><span class="keyword">throws</span> NoSuchAlgorithmException, InvalidKeySpecException &#123;</span><br><span class="line">PBEKeySpec spec = <span class="keyword">new</span> PBEKeySpec(password, salt, iterations, bytes * <span class="number">8</span>);</span><br><span class="line">SecretKeyFactory skf = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM);</span><br><span class="line"><span class="keyword">return</span> skf.generateSecret(spec).getEncoded();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Converts a string of hexadecimal characters into a byte array.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> hex the hex string</span><br><span class="line">* <span class="doctag">@return</span> the hex string decoded into a byte array</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] fromHex(String hex) &#123;</span><br><span class="line"><span class="keyword">byte</span>[] binary = <span class="keyword">new</span> <span class="keyword">byte</span>[hex.length() / <span class="number">2</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; binary.length; i++) &#123;</span><br><span class="line">binary[i] = (<span class="keyword">byte</span>) Integer.parseInt(hex.substring(<span class="number">2</span> * i, <span class="number">2</span> * i + <span class="number">2</span>), <span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Converts a byte array into a hexadecimal string.</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> array the byte array to convert</span><br><span class="line">* <span class="doctag">@return</span> a length*2 character string encoding the byte array</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">toHex</span><span class="params">(<span class="keyword">byte</span>[] array)</span> </span>&#123;</span><br><span class="line">BigInteger bi = <span class="keyword">new</span> BigInteger(<span class="number">1</span>, array);</span><br><span class="line">String hex = bi.toString(<span class="number">16</span>);</span><br><span class="line"><span class="keyword">int</span> paddingLength = (array.length * <span class="number">2</span>) - hex.length();</span><br><span class="line"><span class="keyword">if</span> (paddingLength &gt; <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> String.format(<span class="string">"%0"</span> + paddingLength + <span class="string">"d"</span>, <span class="number">0</span>) + hex;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="keyword">return</span> hex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* Tests the basic functionality of the PasswordHash class</span><br><span class="line">*</span><br><span class="line">* <span class="doctag">@param</span> args ignored</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">System.out.println(<span class="string">"加密后的密码:"</span>+ PasswordHash.createHash(<span class="string">"admin"</span>));</span><br><span class="line"><span class="comment">//oldHash为数据库中存储的密码</span></span><br><span class="line">String oldHash = <span class="string">"9999:21710aa92d15da9b804301100553f9d1778d244736731303:873932ef912a5cf648f9dbe30f5b0296abd86448b19153ac"</span>;</span><br><span class="line"><span class="keyword">boolean</span> isSuccess = validatePassword(<span class="string">"admin"</span>,oldHash);</span><br><span class="line">System.out.println(<span class="string">"密码校验结果:"</span>+isSuccess);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">System.out.println(<span class="string">"ERROR: "</span> + ex);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-IOS多选折叠树（使用RATreeView实现）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -715,94 +774,17 @@
 
 
   
-    <article id="post-使用hexo搭建团队的技术博客" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2015/11/12/使用hexo搭建团队的技术博客/" class="article-date">
-  	<time datetime="2015-11-12T13:06:38.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/使用hexo搭建团队的技术博客/">使用hexo搭建团队的技术博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用hexo搭建技术博客很方便很简单，下面我就以Mac系统为例详细介绍下hexo的安装步骤。</p>
-<p>Mac下安装hexo的步骤：（官方地址：<a href="https://hexo.io/zh-cn/docs/index.html）" target="_blank" rel="external">https://hexo.io/zh-cn/docs/index.html）</a><br>1.<strong>安装nodejs</strong><br>下载地址：<a href="https://nodejs.org/en/，下载后点击安装即可。" target="_blank" rel="external">https://nodejs.org/en/，下载后点击安装即可。</a></p>
-<p>2.<strong>安装Git</strong><br>下载地址：<a href="http://git-scm.com/download/mac，下载后点击安装即可。" target="_blank" rel="external">http://git-scm.com/download/mac，下载后点击安装即可。</a></p>
-<p>3.<strong>安装hexo</strong><br>首先打开控制台，输入 sudo -i 切换为root用户（使用root用户保证对文件夹具有访问权限），然后输入npm install -g hexo-cli，等待大概30s时间，出现success字样，同时列出hexo的目录，表示已经安装成功了。</p>
-<p>4.<strong>初始化hexo文件</strong><br>在你想要存放hexo工程的目录，新建hexo文件夹（文件名随意，这里我直接使用hexo作为文件夹名称了），并切换到hexo，依次执行下列命令</p>
-<blockquote>
-<p>  hexo init hexo-lcx</p>
-<p>  hexo init</p>
-<p>  npm install</p>
-<p>  npm install hexo-deployer-git</p>
-</blockquote>
-<p>成功后可以看到hexo文件夹下已经存在了hexo的全部文件。</p>
-<p>5.<strong>启动hexo</strong><br>控制台输入： </p>
-<blockquote>
-<p>hexo server</p>
-</blockquote>
-<p>提示： INFO  Hexo is running at <a href="http://0.0.0.0:4000/" target="_blank" rel="external">http://0.0.0.0:4000/</a>. Press Ctrl+C to stop.<br>然后在浏览器中输入地址<a href="http://0.0.0.0:4000/即可看到hexo的hello" target="_blank" rel="external">http://0.0.0.0:4000/即可看到hexo的hello</a> world了。<br>按Ctrl+C停止本地预览服务。</p>
-<p>6.<strong>更换主题</strong><br>hexo的主题有很多种，网上提到的可以更换的主题如下：<br><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">github上的hexo的主题大全</a><br><a href="http://www.zhihu.com/question/24422335/answer/46357100" target="_blank" rel="external">知乎上的hexo的主题排行版</a><br><a href="https://hexo.io/themes/" target="_blank" rel="external">hexo官方主题</a><br>下面以yilia为例介绍下更换主题的步骤：yilia地址<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a><br>更换步骤：<br>（1）安装主题<br>进入hexo的根目录，执行安装命令</p>
-<blockquote>
-<p> git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
-</blockquote>
-<p>（2）配置主题<br>修改hexo根目录下的 _config.yml ：</p>
-<blockquote>
-<p>vi _config.yml</p>
-</blockquote>
-<p>修改主题为 theme: yilia<br>（3）更新主题</p>
-<blockquote>
-<p>cd themes/yilia</p>
-<p>git pull</p>
-</blockquote>
-<p>ok，输入 hexo server命令，在浏览器中输入地址访问。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015 学优乐科技
+    		&copy; 2016 学优乐科技
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

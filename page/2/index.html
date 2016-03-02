@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/12 | 北京学优乐科技有限公司</title>
+  <title>北京学优乐科技有限公司</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="北京学优乐科技有限公司的技术博客，目前主推产品课上课下，官方网址是http://www.ikskx.com">
 <meta property="og:type" content="website">
 <meta property="og:title" content="北京学优乐科技有限公司">
-<meta property="og:url" content="http://yoursite.com/archives/2015/12/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="北京学优乐科技有限公司">
 <meta property="og:description" content="北京学优乐科技有限公司的技术博客，目前主推产品课上课下，官方网址是http://www.ikskx.com">
 <meta name="twitter:card" content="summary">
@@ -118,102 +118,92 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-使用hexo搭建团队的技术博客" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2015/11/12/使用hexo搭建团队的技术博客/" class="article-date">
+  	<time datetime="2015-11-12T13:06:38.000Z" itemprop="datePublished">2015-11-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/12/使用hexo搭建团队的技术博客/">使用hexo搭建团队的技术博客</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用hexo搭建技术博客很方便很简单，下面我就以Mac系统为例详细介绍下hexo的安装步骤。</p>
+<p>Mac下安装hexo的步骤：（官方地址：<a href="https://hexo.io/zh-cn/docs/index.html）" target="_blank" rel="external">https://hexo.io/zh-cn/docs/index.html）</a><br>1.<strong>安装nodejs</strong><br>下载地址：<a href="https://nodejs.org/en/，下载后点击安装即可。" target="_blank" rel="external">https://nodejs.org/en/，下载后点击安装即可。</a></p>
+<p>2.<strong>安装Git</strong><br>下载地址：<a href="http://git-scm.com/download/mac，下载后点击安装即可。" target="_blank" rel="external">http://git-scm.com/download/mac，下载后点击安装即可。</a></p>
+<p>3.<strong>安装hexo</strong><br>首先打开控制台，输入 sudo -i 切换为root用户（使用root用户保证对文件夹具有访问权限），然后输入npm install -g hexo-cli，等待大概30s时间，出现success字样，同时列出hexo的目录，表示已经安装成功了。</p>
+<p>4.<strong>初始化hexo文件</strong><br>在你想要存放hexo工程的目录，新建hexo文件夹（文件名随意，这里我直接使用hexo作为文件夹名称了），并切换到hexo，依次执行下列命令</p>
+<blockquote>
+<p>  hexo init hexo-lcx</p>
+<p>  hexo init</p>
+<p>  npm install</p>
+<p>  npm install hexo-deployer-git</p>
+</blockquote>
+<p>成功后可以看到hexo文件夹下已经存在了hexo的全部文件。</p>
+<p>5.<strong>启动hexo</strong><br>控制台输入： </p>
+<blockquote>
+<p>hexo server</p>
+</blockquote>
+<p>提示： INFO  Hexo is running at <a href="http://0.0.0.0:4000/" target="_blank" rel="external">http://0.0.0.0:4000/</a>. Press Ctrl+C to stop.<br>然后在浏览器中输入地址<a href="http://0.0.0.0:4000/即可看到hexo的hello" target="_blank" rel="external">http://0.0.0.0:4000/即可看到hexo的hello</a> world了。<br>按Ctrl+C停止本地预览服务。</p>
+<p>6.<strong>更换主题</strong><br>hexo的主题有很多种，网上提到的可以更换的主题如下：<br><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">github上的hexo的主题大全</a><br><a href="http://www.zhihu.com/question/24422335/answer/46357100" target="_blank" rel="external">知乎上的hexo的主题排行版</a><br><a href="https://hexo.io/themes/" target="_blank" rel="external">hexo官方主题</a><br>下面以yilia为例介绍下更换主题的步骤：yilia地址<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a><br>更换步骤：<br>（1）安装主题<br>进入hexo的根目录，执行安装命令</p>
+<blockquote>
+<p> git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
+</blockquote>
+<p>（2）配置主题<br>修改hexo根目录下的 _config.yml ：</p>
+<blockquote>
+<p>vi _config.yml</p>
+</blockquote>
+<p>修改主题为 theme: yilia<br>（3）更新主题</p>
+<blockquote>
+<p>cd themes/yilia</p>
+<p>git pull</p>
+</blockquote>
+<p>ok，输入 hexo server命令，在浏览器中输入地址访问。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/" class="archive-article-date">
-  	<time datetime="2015-12-21T13:11:12.000Z" itemprop="datePublished">12月 21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/">IOS多选折叠树（使用RATreeView实现）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/16/IOS开发零散知识点（一）/" class="archive-article-date">
-  	<time datetime="2015-12-16T08:58:11.000Z" itemprop="datePublished">12月 16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/16/IOS开发零散知识点（一）/">IOS开发零散知识点（一）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/15/UITextView添加placeholder灰色提示文字/" class="archive-article-date">
-  	<time datetime="2015-12-15T06:36:01.000Z" itemprop="datePublished">12月 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/15/UITextView添加placeholder灰色提示文字/">UITextView添加placeholder灰色提示文字</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
   
   
-    </div></section>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
-
-    
-
 </div>
       <footer id="footer">
   <div class="outer">
@@ -237,9 +227,9 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
