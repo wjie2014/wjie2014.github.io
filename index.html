@@ -122,6 +122,127 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/04/解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题/" class="article-date">
+  	<time datetime="2016-03-04T01:27:53.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/04/解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题/">解决Xcode could not find developer disk image问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>ios系统升级后总会出现和Xcode不匹配的问题，出现could not find developer disk image问题的解决办法是如下。</li>
+</ul>
+<ul>
+<li><p>下载相应版本的包拷贝到：/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport<br>目录下。完全关闭Xcode后，重启即可。如：iPhone手机的版本是9.2.1 (13D15)，下载9.2的包，拷贝到/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport下，重启。</p>
+</li>
+<li><p>提供几个版本包的下载地址：</p>
+</li>
+</ul>
+<p>9.2 开发包下载链接：<a href="http://download.csdn.net/detail/xieyupeng520/9386034" target="_blank" rel="external">http://download.csdn.net/detail/xieyupeng520/9386034</a><br>9.1 开发包下载链接：<a href="http://download.csdn.net/detail/xieyupeng520/9365277" target="_blank" rel="external">http://download.csdn.net/detail/xieyupeng520/9365277</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-加盐hash保存密码的正确方式副本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/04/加盐hash保存密码的正确方式副本/" class="article-date">
+  	<time datetime="2016-03-04T01:19:55.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/04/加盐hash保存密码的正确方式副本/">加盐hash保存密码的正确方式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>提醒：</li>
+</ul>
+<blockquote>
+<p>无论是web开发还是移动端开发，都会遇到设计用户系统的需求，用户系统最重要的方面就是如何保存用户的密码，通常大家会直接采用md5加密，md5加盐加密，sha1加密，sha1加盐加密等，虽然用户加密看起来很简单，但是会有很多人犯错，单纯的加密会有很多破解方式，如：字典暴力破解，双向查表等。 如果你打算自己写一段代码来进行密码hash，那么赶紧停下吧。这样太容易犯错了。这个提醒适用于每一个人，不要自己写密码的hash算法 ！关于保存密码的问题已经有了成熟的方案，那就是使用phpass或者本文提供的源码。</p>
+</blockquote>
+<ul>
+<li>Java Hash加密源码：
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/04/加盐hash保存密码的正确方式副本/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Android通过Wifi调试程序" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -174,67 +295,6 @@
       
       
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-加盐hash保存密码的正确方式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/02/加盐hash保存密码的正确方式/" class="article-date">
-  	<time datetime="2016-03-02T07:28:53.000Z" itemprop="datePublished">2016-03-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/02/加盐hash保存密码的正确方式/">加盐hash保存密码的正确方式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>提醒：</li>
-</ul>
-<blockquote>
-<p>无论是web开发还是移动端开发，都会遇到设计用户系统的需求，用户系统最重要的方面就是如何保存用户的密码，通常大家会直接采用md5加密，md5加盐加密，sha1加密，sha1加盐加密等，虽然用户加密看起来很简单，但是会有很多人犯错，单纯的加密会有很多破解方式，如：字典暴力破解，双向查表等。 如果你打算自己写一段代码来进行密码hash，那么赶紧停下吧。这样太容易犯错了。这个提醒适用于每一个人，不要自己写密码的hash算法 ！关于保存密码的问题已经有了成熟的方案，那就是使用phpass或者本文提供的源码。</p>
-</blockquote>
-<ul>
-<li>Java Hash加密源码：
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/02/加盐hash保存密码的正确方式/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -656,71 +716,6 @@
         <p>在hexo d发布到github时，会把其他的文件删除，比如我们的md文件或域名配置文件CNAME，解决办法很简单，如下：</p>
 <ul>
 <li>在source文件夹下新建一个md文件写入内容或CNAME文件写入域名，然后执行hexo d提交后就正常了。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-github默认域名绑定自己的域名" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/github默认域名绑定自己的域名/" class="article-date">
-  	<time datetime="2015-11-12T13:07:07.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/github默认域名绑定自己的域名/">Github默认域名绑定自己的域名</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>在项目根目录下建立一文件，名为CNAME，里面写上域名，如app.com 或者在命令行里执行：</li>
-</ul>
-<blockquote>
-<p>$ echo ‘app.com’ &gt;&gt; source/CNAME</p>
-</blockquote>
-<ul>
-<li>去自己的域名运营商（我是name.com）处修改:</li>
-</ul>
-<blockquote>
-<p>CNAME: www.app.com =&gt; wjie2014.github.com</p>
-</blockquote>
-<ul>
-<li>注意：文中app请替换为自己的域名,wjie2014替换为自己的github名。</li>
 </ul>
 
       

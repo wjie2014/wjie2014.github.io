@@ -3,24 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android通过Wifi调试程序 | 学优乐</title>
+  <title>解决Xcode could not find developer disk image问题 | 学优乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：
-手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。
-进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-too">
+  <meta name="description" content="ios系统升级后总会出现和Xcode不匹配的问题，出现could not find developer disk image问题的解决办法是如下。
+
+
+下载相应版本的包拷贝到：/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport目录下。完全关闭Xcode后，重启">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android通过Wifi调试程序">
-<meta property="og:url" content="http://yoursite.com/2016/03/02/Android通过Wifi调试程序/index.html">
+<meta property="og:title" content="解决Xcode could not find developer disk image问题">
+<meta property="og:url" content="http://yoursite.com/2016/03/04/解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题/index.html">
 <meta property="og:site_name" content="学优乐">
-<meta property="og:description" content="很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：
-手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。
-进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-too">
-<meta property="og:updated_time" content="2016-03-02T07:45:49.000Z">
+<meta property="og:description" content="ios系统升级后总会出现和Xcode不匹配的问题，出现could not find developer disk image问题的解决办法是如下。
+
+
+下载相应版本的包拷贝到：/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport目录下。完全关闭Xcode后，重启">
+<meta property="og:updated_time" content="2016-03-04T01:27:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android通过Wifi调试程序">
-<meta name="twitter:description" content="很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：
-手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。
-进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-too">
+<meta name="twitter:title" content="解决Xcode could not find developer disk image问题">
+<meta name="twitter:description" content="ios系统升级后总会出现和Xcode不匹配的问题，出现could not find developer disk image问题的解决办法是如下。
+
+
+下载相应版本的包拷贝到：/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport目录下。完全关闭Xcode后，重启">
   
     <link rel="alternative" href="/atom.xml" title="学优乐" type="application/atom+xml">
   
@@ -127,11 +130,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Android通过Wifi调试程序" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/02/Android通过Wifi调试程序/" class="article-date">
-  	<time datetime="2016-03-02T07:45:49.000Z" itemprop="datePublished">2016-03-02</time>
+      <a href="/2016/03/04/解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题/" class="article-date">
+  	<time datetime="2016-03-04T01:27:53.000Z" itemprop="datePublished">2016-03-04</time>
 </a>
     </div>
   
@@ -144,7 +147,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android通过Wifi调试程序
+      解决Xcode could not find developer disk image问题
     </h1>
   
 
@@ -160,23 +163,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：">很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：</h5><ol>
-<li>手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。</li>
-<li>进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-tools</li>
-<li>打开命令行 adb tcpip 5555<blockquote>
-<p> 以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>你会发现，手机顶端不在出现原先有的图标  你会发现，手机顶端不在出现原先有的图标</p>
-</blockquote>
+        <ul>
+<li>ios系统升级后总会出现和Xcode不匹配的问题，出现could not find developer disk image问题的解决办法是如下。</li>
+</ul>
+<ul>
+<li><p>下载相应版本的包拷贝到：/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport<br>目录下。完全关闭Xcode后，重启即可。如：iPhone手机的版本是9.2.1 (13D15)，下载9.2的包，拷贝到/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport下，重启。</p>
 </li>
-<li>使电脑连接手机的wifi的地址<blockquote>
-<p>打开手机连接wifi的地方，并得到wifi的地址。我的为：192.168.1.129<br>接着在上次一个步骤的命令行中输入 adb connect 192.168.1.129<br>出现：connected to 192.168.1.129:5555 代表执行成功</p>
-</blockquote>
+<li><p>提供几个版本包的下载地址：</p>
 </li>
-<li>现在你可以断开usb线了（其实在第三步后，就可以断开了），然后像往常run一个应用程序，即可。</li>
-<li>此时你的usb对于此手机已经作废，那么如何变成usb试调模式呢？也就是还原呢。<blockquote>
-<p>很简单，usb数据线连接，在同一个命令行。输入<br>adb usb<br>出现：restarting in USB mode 说明成功。<br>还原原来的状态。</p>
-</blockquote>
-</li>
-</ol>
+</ul>
+<p>9.2 开发包下载链接：<a href="http://download.csdn.net/detail/xieyupeng520/9386034" target="_blank" rel="external">http://download.csdn.net/detail/xieyupeng520/9386034</a><br>9.1 开发包下载链接：<a href="http://download.csdn.net/detail/xieyupeng520/9365277" target="_blank" rel="external">http://download.csdn.net/detail/xieyupeng520/9365277</a></p>
 
       
     </div>
@@ -186,18 +182,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/04/加盐hash保存密码的正确方式副本/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          加盐hash保存密码的正确方式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">IOS多选折叠树（使用RATreeView实现）</div>
+    <a href="/2016/03/04/加盐hash保存密码的正确方式副本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">加盐hash保存密码的正确方式</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -226,7 +213,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Android通过Wifi调试程序" data-title="Android通过Wifi调试程序" data-url="http://yoursite.com/2016/03/02/Android通过Wifi调试程序/"></div>
+	<div class="ds-thread" data-thread-key="解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题" data-title="解决Xcode could not find developer disk image问题" data-url="http://yoursite.com/2016/03/04/解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
