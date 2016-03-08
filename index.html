@@ -122,96 +122,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-羊皮书APP（Android版）开发系列（六）几个工具的选取" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/08/羊皮书APP（Android版）开发系列（六）几个工具的选取/" class="article-date">
-  	<time datetime="2016-03-08T01:43:02.000Z" itemprop="datePublished">2016-03-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/08/羊皮书APP（Android版）开发系列（六）几个工具的选取/">羊皮书APP（Android版）开发系列（六）快捷工具</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="https://github.com/google/gson" target="_blank" rel="external">Gson框架</a>：是Google封装的一款json对象处理库，个人偏好选择Gson。当然还有比较知名的处理库，如：Jackson、fastjson。</li>
-</ul>
-<blockquote>
-<p>既然是一款APP，那避免不掉要和服务器交互，服务器提供接口，用于提供数据，通常服务器返回数据的格式都是使用json格式,使用Gson来解析json格式很方便，fromJson()和toJson()是两个常用的方法。</p>
-</blockquote>
-<ul>
-<li><a href="https://github.com/zzz40500/GsonFormat" target="_blank" rel="external">GsonFormat插件</a>：是一款android studio插件，它可以根据Gson库使用的要求,将JSONObject格式的String解析成实体。</li>
-</ul>
-<blockquote>
-<p>如果你的IDE是android studio ，那赶紧安装GsonFormat试试吧？如果你的IDE还是eclipse，那我建议你赶紧将eclipse换成android studio，其中的好处不必多说。</p>
-<p>使用方法：新建一个实体类如：UserInfo.java,鼠标定位到类的结构体中，用快捷键 command + N ，选择GsonFormat，在弹出框中黏贴Json字符串，点击OK即可。</p>
-</blockquote>
-<ul>
-<li><a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">butterknife注解框架</a>:是一款Android平台的注解框架，使用起来很方便，不用再重复的写很多findViewById和setOnclick方法。</li>
-</ul>
-<blockquote>
-<p>引入butterknife的方式:</p>
-<pre><code>Download the latest JAR or grab via Maven:
-<dependency>
-  <groupid>com.jakewharton</groupid>
-  <artifactid>butterknife</artifactid>
-  <version>7.0.1</version>
-</dependency>
-or Gradle:
-compile 'com.jakewharton:butterknife:7.0.1'</code></pre>
-
-</blockquote>
-<ul>
-<li>butterknife插件:是一款android studio插件，直接在android studio中搜索安装。</li>
-</ul>
-<blockquote>
-<p>butterknife插件使用方法:在Activity中将鼠标定位到onCreate方法中所使用的布局 ID 上点击右键 (例如： R.layout.activity_settings )，使用快捷键command + N ，然后选择 Generate -&gt; Generate ButterKnife Injections即可。</p>
-<p>注意：使用之前项目中必须引入了ButterKnife库。</p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-羊皮书APP（Android版）开发系列（二）日志工具类" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/07/羊皮书APP（Android版）开发系列（二）日志工具类/" class="article-date">
-  	<time datetime="2016-03-07T12:07:37.000Z" itemprop="datePublished">2016-03-07</time>
+      <a href="/2016/03/08/羊皮书APP（Android版）开发系列（二）日志工具类/" class="article-date">
+  	<time datetime="2016-03-08T01:46:14.000Z" itemprop="datePublished">2016-03-08</time>
 </a>
     </div>
   
@@ -224,7 +139,7 @@ compile 'com.jakewharton:butterknife:7.0.1'</code></pre>
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/07/羊皮书APP（Android版）开发系列（二）日志工具类/">羊皮书APP （Android版）开发系列（二）－－日志工具类</a>
+      <a class="article-title" href="/2016/03/08/羊皮书APP（Android版）开发系列（二）日志工具类/">羊皮书APP （Android版）开发系列（二）日志工具类</a>
     </h1>
   
 
@@ -590,6 +505,91 @@ public class FileHelper {
 <li><p>点击控制台超链接StartUpActivity.java:24即可直接定位到日志的具体位置。是不是很简单呢？赶紧试试吧！</p>
 </li>
 </ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（六）几个工具的选取" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/08/羊皮书APP（Android版）开发系列（六）几个工具的选取/" class="article-date">
+  	<time datetime="2016-03-08T01:43:02.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/08/羊皮书APP（Android版）开发系列（六）几个工具的选取/">羊皮书APP（Android版）开发系列（六）快捷工具</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://github.com/google/gson" target="_blank" rel="external">Gson框架</a>：是Google封装的一款json对象处理库，个人偏好选择Gson。当然还有比较知名的处理库，如：Jackson、fastjson。</li>
+</ul>
+<blockquote>
+<p>既然是一款APP，那避免不掉要和服务器交互，服务器提供接口，用于提供数据，通常服务器返回数据的格式都是使用json格式,使用Gson来解析json格式很方便，fromJson()和toJson()是两个常用的方法。</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/zzz40500/GsonFormat" target="_blank" rel="external">GsonFormat插件</a>：是一款android studio插件，它可以根据Gson库使用的要求,将JSONObject格式的String解析成实体。</li>
+</ul>
+<blockquote>
+<p>如果你的IDE是android studio ，那赶紧安装GsonFormat试试吧？如果你的IDE还是eclipse，那我建议你赶紧将eclipse换成android studio，其中的好处不必多说。</p>
+<p>使用方法：新建一个实体类如：UserInfo.java,鼠标定位到类的结构体中，用快捷键 command + N ，选择GsonFormat，在弹出框中黏贴Json字符串，点击OK即可。</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">butterknife注解框架</a>:是一款Android平台的注解框架，使用起来很方便，不用再重复的写很多findViewById和setOnclick方法。</li>
+</ul>
+<blockquote>
+<p>引入butterknife的方式:</p>
+<pre><code>Download the latest JAR or grab via Maven:
+<dependency>
+  <groupid>com.jakewharton</groupid>
+  <artifactid>butterknife</artifactid>
+  <version>7.0.1</version>
+</dependency>
+or Gradle:
+compile 'com.jakewharton:butterknife:7.0.1'</code></pre>
+
+</blockquote>
+<ul>
+<li>butterknife插件:是一款android studio插件，直接在android studio中搜索安装。</li>
+</ul>
+<blockquote>
+<p>butterknife插件使用方法:在Activity中将鼠标定位到onCreate方法中所使用的布局 ID 上点击右键 (例如： R.layout.activity_settings )，使用快捷键command + N ，然后选择 Generate -&gt; Generate ButterKnife Injections即可。</p>
+<p>注意：使用之前项目中必须引入了ButterKnife库。</p>
+</blockquote>
 
       
     </div>
