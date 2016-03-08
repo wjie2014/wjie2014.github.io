@@ -122,6 +122,1298 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-羊皮书APP（Android版）开发系列（六）几个工具的选取" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/08/羊皮书APP（Android版）开发系列（六）几个工具的选取/" class="article-date">
+  	<time datetime="2016-03-08T01:43:02.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/08/羊皮书APP（Android版）开发系列（六）几个工具的选取/">羊皮书APP（Android版）开发系列（六）快捷工具</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://github.com/google/gson" target="_blank" rel="external">Gson框架</a>：是Google封装的一款json对象处理库，个人偏好选择Gson。当然还有比较知名的处理库，如：Jackson、fastjson。</li>
+</ul>
+<blockquote>
+<p>既然是一款APP，那避免不掉要和服务器交互，服务器提供接口，用于提供数据，通常服务器返回数据的格式都是使用json格式,使用Gson来解析json格式很方便，fromJson()和toJson()是两个常用的方法。</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/zzz40500/GsonFormat" target="_blank" rel="external">GsonFormat插件</a>：是一款android studio插件，它可以根据Gson库使用的要求,将JSONObject格式的String解析成实体。</li>
+</ul>
+<blockquote>
+<p>如果你的IDE是android studio ，那赶紧安装GsonFormat试试吧？如果你的IDE还是eclipse，那我建议你赶紧将eclipse换成android studio，其中的好处不必多说。</p>
+<p>使用方法：新建一个实体类如：UserInfo.java,鼠标定位到类的结构体中，用快捷键 command + N ，选择GsonFormat，在弹出框中黏贴Json字符串，点击OK即可。</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">butterknife注解框架</a>:是一款Android平台的注解框架，使用起来很方便，不用再重复的写很多findViewById和setOnclick方法。</li>
+</ul>
+<blockquote>
+<p>引入butterknife的方式:</p>
+<pre><code>Download the latest JAR or grab via Maven:
+<dependency>
+  <groupid>com.jakewharton</groupid>
+  <artifactid>butterknife</artifactid>
+  <version>7.0.1</version>
+</dependency>
+or Gradle:
+compile 'com.jakewharton:butterknife:7.0.1'</code></pre>
+
+</blockquote>
+<ul>
+<li>butterknife插件:是一款android studio插件，直接在android studio中搜索安装。</li>
+</ul>
+<blockquote>
+<p>butterknife插件使用方法:在Activity中将鼠标定位到onCreate方法中所使用的布局 ID 上点击右键 (例如： R.layout.activity_settings )，使用快捷键command + N ，然后选择 Generate -&gt; Generate ButterKnife Injections即可。</p>
+<p>注意：使用之前项目中必须引入了ButterKnife库。</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（二）日志工具类" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/07/羊皮书APP（Android版）开发系列（二）日志工具类/" class="article-date">
+  	<time datetime="2016-03-07T12:07:37.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/羊皮书APP（Android版）开发系列（二）日志工具类/">羊皮书APP （Android版）开发系列（二）－－日志工具类</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在App开发过程中，很重要的一个调试工具就是日志的打印，Android系统自带的日志打印文件，看起来并不是很直观。这里我们自己对原生Android 日志做一个封装，方便我们使用。</p>
+</blockquote>
+<ul>
+<li>为了更方便，更简洁，将日志文件工具命名为L.java,代码如下：</li>
+</ul>
+<pre><code>
+package cn.studyou.parchment.log;
+
+import android.text.TextUtils;
+import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.File;
+/**
+ * 基本功能：记录日志
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class L {
+
+    private static boolean IS_SHOW_LOG = true;
+
+    private static final String DEFAULT_MESSAGE = "execute";
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    private static final int JSON_INDENT = 4;
+
+    private static final int V = 0x1;
+    private static final int D = 0x2;
+    private static final int I = 0x3;
+    private static final int W = 0x4;
+    private static final int E = 0x5;
+    private static final int A = 0x6;
+    private static final int JSON = 0x7;
+    private static final int FILE = 0x8;
+
+    public static void init(boolean isShowLog) {
+        IS_SHOW_LOG = isShowLog;
+    }
+
+    public static void v() {
+        printLog(V, null, DEFAULT_MESSAGE);
+    }
+
+    public static void v(Object msg) {
+        printLog(V, null, msg);
+    }
+
+    public static void v(String tag, String msg) {
+        printLog(V, tag, msg);
+    }
+
+    public static void d() {
+        printLog(D, null, DEFAULT_MESSAGE);
+    }
+
+    public static void d(Object msg) {
+        printLog(D, null, msg);
+    }
+
+    public static void d(String tag, Object msg) {
+        printLog(D, tag, msg);
+    }
+
+    public static void i() {
+        printLog(I, null, DEFAULT_MESSAGE);
+    }
+
+    public static void i(Object msg) {
+        printLog(I, null, msg);
+    }
+
+    public static void i(String tag, Object msg) {
+        printLog(I, tag, msg);
+    }
+
+    public static void w() {
+        printLog(W, null, DEFAULT_MESSAGE);
+    }
+
+    public static void w(Object msg) {
+        printLog(W, null, msg);
+    }
+
+    public static void w(String tag, Object msg) {
+        printLog(W, tag, msg);
+    }
+
+    public static void e() {
+        printLog(E, null, DEFAULT_MESSAGE);
+    }
+
+    public static void e(Object msg) {
+        printLog(E, null, msg);
+    }
+
+    public static void e(String tag, Object msg) {
+        printLog(E, tag, msg);
+    }
+
+    public static void a() {
+        printLog(A, null, DEFAULT_MESSAGE);
+    }
+
+    public static void a(Object msg) {
+        printLog(A, null, msg);
+    }
+
+    public static void a(String tag, Object msg) {
+        printLog(A, tag, msg);
+    }
+
+    public static void json(String jsonFormat) {
+        printLog(JSON, null, jsonFormat);
+    }
+
+    public static void json(String tag, String jsonFormat) {
+        printLog(JSON, tag, jsonFormat);
+    }
+
+    public static void file(File targetDirectory, Object msg) {
+        printFile(null, targetDirectory, null, msg);
+    }
+
+    public static void file(String tag, File targetDirectory, Object msg) {
+        printFile(tag, targetDirectory, null, msg);
+    }
+
+    public static void file(String tag, File targetDirectory, String fileName, Object msg) {
+        printFile(tag, targetDirectory, fileName, msg);
+    }
+
+    private static void printLog(int type, String tagStr, Object objectMsg) {
+
+        if (!IS_SHOW_LOG) {
+            return;
+        }
+
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+
+        int index = 4;
+        String className = stackTrace[index].getFileName();
+        String methodName = stackTrace[index].getMethodName();
+        int lineNumber = stackTrace[index].getLineNumber();
+
+        String tag = (tagStr == null ? className : tagStr);
+
+        String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[ (").append(className).append(":").append(lineNumber).append(")#").append(methodNameShort).append(" ] ");
+        String msg = (objectMsg == null) ? "Log with null Object" : objectMsg.toString();
+
+        if (msg != null && type != JSON) {
+            stringBuilder.append(msg);
+        }
+
+        String logStr = stringBuilder.toString();
+
+        switch (type) {
+            case V:
+            case D:
+            case I:
+            case W:
+            case E:
+            case A:
+                printLog(type, tag, logStr);
+                break;
+            case JSON: {
+                if (TextUtils.isEmpty(msg)) {
+                    Log.e(tag, "Empty or Null json content");
+                    return;
+                }
+                printJson(tag, msg, logStr);
+            }
+            break;
+        }
+
+    }
+
+
+    private static void printLog(int type, String tag, String logStr) {
+        switch (type) {
+            case V:
+                Log.v(tag, logStr);
+                break;
+            case D:
+                Log.d(tag, logStr);
+                break;
+            case I:
+                Log.i(tag, logStr);
+                break;
+            case W:
+                Log.w(tag, logStr);
+                break;
+            case E:
+                Log.e(tag, logStr);
+                break;
+            case A:
+                Log.wtf(tag, logStr);
+                break;
+        }
+    }
+
+    private static void printJson(String tag, String msg, String logStr) {
+
+        String message = null;
+
+        try {
+            if (msg.startsWith("{")) {
+                JSONObject jsonObject = new JSONObject(msg);
+                message = jsonObject.toString(JSON_INDENT);
+            } else if (msg.startsWith("[")) {
+                JSONArray jsonArray = new JSONArray(msg);
+                message = jsonArray.toString(JSON_INDENT);
+            }
+        } catch (JSONException e) {
+            e(tag, e.getCause().getMessage() + "\n" + msg);
+            return;
+        }
+
+        printLine(tag, true);
+        message = logStr + LINE_SEPARATOR + message;
+        String[] lines = message.split(LINE_SEPARATOR);
+        StringBuilder jsonContent = new StringBuilder();
+        for (String line : lines) {
+            jsonContent.append("║ ").append(line).append(LINE_SEPARATOR);
+        }
+        Log.d(tag, jsonContent.toString());
+        printLine(tag, false);
+    }
+
+    private static void printFile(String tag, File targetDirectory, String fileName, Object objectMsg) {
+
+        if (!IS_SHOW_LOG) {
+            return;
+        }
+
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+
+        int index = 4;
+        String className = stackTrace[index].getFileName();
+        String methodName = stackTrace[index].getMethodName();
+        int lineNumber = stackTrace[index].getLineNumber();
+
+        tag = (tag == null ? className : tag);
+
+        String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[ (").append(className).append(":").append(lineNumber).append(")#").append(methodNameShort).append(" ] ");
+        String msg = (objectMsg == null) ? "Log with null Object" : objectMsg.toString();
+
+        String headString = stringBuilder.toString();
+
+        if (msg != null) {
+            msg = headString + msg;
+        }
+
+        fileName = (fileName == null) ? FileHelper.getFileName() : fileName;
+        if (FileHelper.save(targetDirectory, fileName, msg)) {
+            Log.d(tag, headString + " save log success ! location is >>>" + targetDirectory.getAbsolutePath() + "/" + fileName);
+        } else {
+            Log.e(tag, headString + "save log fails !");
+        }
+    }
+
+    private static void printLine(String tag, boolean isTop) {
+        if (isTop) {
+            Log.d(tag, "╔═══════════════════════════════════════════════════════════════════════════════════════");
+        } else {
+            Log.d(tag, "╚═══════════════════════════════════════════════════════════════════════════════════════");
+        }
+    }
+
+}
+</code></pre>
+
+<ul>
+<li>FileHelper.java 代码如下：</li>
+</ul>
+<pre><code>
+package cn.studyou.parchment.log;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Random;
+
+/**
+ * 基本功能：FileHelper
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class FileHelper {
+
+    public static boolean save(File dic, String fileName, String msg) {
+
+        File file = new File(dic, fileName);
+
+        try {
+            OutputStream outputStream = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
+            outputStreamWriter.write(msg);
+            outputStreamWriter.flush();
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public static String getFileName() {
+        Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder("KLog_");
+        stringBuilder.append(Long.toString(System.currentTimeMillis()+random.nextInt(10000)).substring(4));
+        stringBuilder.append(".txt");
+        return stringBuilder.toString();
+    }
+
+}
+</code></pre>
+
+<blockquote>
+<p>这个日志工具只有以上两个文件，那么我们如何使用这个日志工具呢？很简答。</p>
+</blockquote>
+<ul>
+<li>首先在APP的Application文件中设置debug开关：<pre><code>    public static final boolean DEVELOPER_MODE = true;
+</code></pre></li>
+<li>其次在OnCreate方法中进行初始化：<pre><code> @Override
+  public void onCreate() {
+      super.onCreate();
+      //初始化日志工具
+      L.init(DEVELOPER_MODE);
+  }</code></pre></li>
+<li>到这里初始化就完成了，在我们的java文件中使用这个日志工具L：<pre><code>
+       L.e("First start!");
+      L.i("First start!");
+      L.a("First start!");</code></pre></li>
+<li><p>控制台显示结果：<br><code><pre>03-07 13:37:59.470 14633-14633/cn.studyou.parchment E/StartUpActivity.java: [ (StartUpActivity.java:24)#OnCreate ] First start!<br>03-07 13:37:59.470 14633-14633/cn.studyou.parchment I/StartUpActivity.java: [ (StartUpActivity.java:26)#OnCreate ] First start!<br>03-07 13:37:59.470 14633-14633/cn.studyou.parchment A/StartUpActivity.java: [ (StartUpActivity.java:27)#OnCreate ] First start!</pre></code></p>
+</li>
+<li><p>点击控制台超链接StartUpActivity.java:24即可直接定位到日志的具体位置。是不是很简单呢？赶紧试试吧！</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（三）APP引导页启动控制类" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/07/羊皮书APP（Android版）开发系列（三）APP引导页启动控制类/" class="article-date">
+  	<time datetime="2016-03-07T12:06:43.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/羊皮书APP（Android版）开发系列（三）APP引导页启动控制类/">羊皮书APP（Android版）开发系列（三）APP引导页启动控制类</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>基本上一个完整的APP都会有一个引导页，在APP首次安装或APP更新后第一次打开时显示，这个逻辑是很通用的，所以写成一个工具类，方便使用。</p>
+</blockquote>
+<ul>
+<li>APP启动页逻辑有三种情况:<ol>
+<li>当APP被首次安装后打开时显示引导页。</li>
+<li>当APP更新版本后，第一次打开时显示引导页。</li>
+<li>当APP再次启动时，跳过引导页。</li>
+</ol>
+</li>
+<li>工具类AppIntroUtil.java代码如下：</li>
+</ul>
+<pre><code>
+package cn.studyou.parchment.utils;
+import android.content.Context;
+import android.text.TextUtils;
+/**
+ * 基本功能：app启动引导页控制
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class AppIntroUtil {
+    public static final int LMODE_NEW_INSTALL = 1; //再次启动
+    public static final int LMODE_UPDATE = 2;//更新后第一次启动
+    public static final int LMODE_AGAIN = 3;//首次安装启动
+    public static final String SHARENAME= "lastVersion";
+    private boolean isOpenMarked = false;
+    private int launchMode = LMODE_AGAIN; //启动-模式
+    private static AppIntroUtil instance;
+    public static AppIntroUtil getThis() {
+        if (instance == null)
+            instance = new AppIntroUtil();
+        return instance;
+    }
+
+    /**
+     * 标记-打开app,用于产生-是否首次打开
+     * @param context
+     */
+    public void markOpenApp(Context context) {
+        // 防止-重复调用
+        if (isOpenMarked)
+            return;
+        isOpenMarked = true;
+        String lastVersion = OperatingSharedPreferences.getString(context,SHARENAME,SHARENAME);
+        String thisVersion = VersionUtil.getVersion(context);
+        // 首次启动
+        if (TextUtils.isEmpty(lastVersion)) {
+            launchMode = LMODE_NEW_INSTALL;
+            OperatingSharedPreferences.setString(context,SHARENAME,SHARENAME,thisVersion);
+        }
+        // 更新
+        else if (VersionUtil.compareVersion(lastVersion,thisVersion)) {
+            launchMode = LMODE_UPDATE;
+            OperatingSharedPreferences.setString(context, SHARENAME, SHARENAME, thisVersion);
+        }
+        // 二次启动(版本未变)
+        else
+            launchMode = LMODE_AGAIN;
+    }
+    public int getLaunchMode() {
+        return launchMode;
+    }
+    /**
+     * 首次打开,新安装、覆盖(版本号不同)
+     * @return
+     */
+    public boolean isFirstOpen() {
+        return launchMode != LMODE_AGAIN;
+    }
+}
+
+</code></pre>
+
+<ul>
+<li>AppIntroUtil.java中使用了另外一个工具类OperatingSharedPreferences.java，这个工具类就是对SharedPreferences进行的一个封装，方便使用，代码如下：</li>
+</ul>
+<pre><code>
+package cn.studyou.parchment.utils;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
+/**
+ * 基本功能：存储和访问SharedPreferences
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class OperatingSharedPreferences {
+
+    /**
+     * 
+     * 基本功能：保存String类型数据到SharedPreferences
+     * 编写：王杰
+     *
+     * @param context
+     * @param name
+     * @param key
+     * @param value  
+     */
+
+    public static void setString(Context context,
+                                 String name, String key, String value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                name, Context.MODE_PRIVATE);
+        Editor editor = sharedPreferences.edit();// 获取编辑器
+        editor.putString(key, value);
+        editor.commit();// 提交修改
+    }
+
+
+    /**
+     * 
+     * 基本功能：取得SharedPreferences中存储的String类型数据
+     * 编写：王杰
+     *
+     * @param context
+     * @param name
+     * @param key
+     * @return 
+     */
+    public static String getString(Context context,
+                                   String name, String key) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                name, Context.MODE_PRIVATE);
+        String signature = sharedPreferences.getString(key, "");
+        return signature;
+    }
+
+    /**
+     * 
+     * 基本功能：存储的Int类型数据到SharedPreferences
+     * 编写：王杰
+     *
+     * @param context
+     * @param name
+     * @param key
+     * @return 
+     */
+    public static void setInt(Context context,
+                              String name, String key, int value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                name, Context.MODE_PRIVATE);
+        Editor editor = sharedPreferences.edit();// 获取编辑器
+        editor.putInt(key, value);
+        editor.commit();// 提交修改
+    }
+
+    /**
+     * 
+     * 基本功能：取得SharedPreferences中存储的Int类型数据
+     * 编写：王杰
+     *
+     * @param context
+     * @param name
+     * @param key
+     * @return
+     */
+    public static int getInt(Context context,
+                             String name, String key) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                name, Context.MODE_PRIVATE);
+        int signature = sharedPreferences.getInt(key, 0);
+        return signature;
+    }
+}
+
+</code></pre>
+
+<ul>
+<li>AppIntroUtil.java还使用了一个工具类VersionUtil.java，是用来比较APP版本。简要说明一下：使用这个工具类，我们是根据APP的versionName来进行判断的，规定versionName名字不少于三位（如：1.0.0，1.1.2）,compareVersion方法用来判断两个版本的大小，只比较前两位，若compareVersion方法返回true，则表示有新版本，否则为同一版本或低于当前版本。代码如下：</li>
+</ul>
+<pre><code>package cn.studyou.parchment.utils;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
+/**
+ * 基本功能：app版本号
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class VersionUtil {
+    /**
+     * 获取版本号
+     *
+     * @return 当前应用的版本号
+     */
+    public static String getVersion(Context context) {
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            String version = info.versionName;
+            return version;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * 版本比较
+     *
+     * @param nowVersion    app版本
+     * @param serverVersion 服务器版本
+     * @return
+     */
+    public static boolean compareVersion(String nowVersion, String serverVersion) {
+
+        if (nowVersion != null && serverVersion != null) {
+            String[] nowVersions = nowVersion.split("\\.");
+            String[] serverVersions = serverVersion.split("\\.");
+            if (nowVersions != null && serverVersions != null && nowVersions.length > 1 && serverVersions.length > 1) {
+                int nowVersionsFirst = Integer.parseInt(nowVersions[0]);
+                int serverVersionFirst = Integer.parseInt(serverVersions[0]);
+                int nowVersionsSecond = Integer.parseInt(nowVersions[1]);
+                int serverVersionSecond = Integer.parseInt(serverVersions[1]);
+                if (nowVersionsFirst < serverVersionFirst) {
+                    return true;
+                } else if (nowVersionsFirst == serverVersionFirst && nowVersionsSecond < serverVersionSecond) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+</code></pre>
+
+<ul>
+<li><p>那么R如何使用这个启动控制类AppIntroUtil.java呢？</p>
+<ol>
+<li>在Application类中初始化,我的Application 类名字是ParchmentApplication。</li>
+</ol>
+</li>
+</ul>
+<pre><code>
+package cn.studyou.parchment;
+import android.app.Application;
+import cn.studyou.parchment.log.L;
+import cn.studyou.parchment.utils.AppIntroUtil;
+
+/**
+ * 基本功能：Application
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class ParchmentApplication extends Application {
+    private static ParchmentApplication instance;
+    public static final boolean DEVELOPER_MODE = true;
+
+    public static ParchmentApplication getThis() {
+        if (instance == null)
+            instance = new ParchmentApplication();
+        return instance;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //初始化日志工具
+        L.init(DEVELOPER_MODE);
+        AppIntroUtil.getThis().markOpenApp(getApplicationContext());
+    }
+}
+</code></pre>
+ 2. 在APP启动控制Activity中使用:
+
+<pre><code>package cn.studyou.parchment.activity;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import cn.studyou.parchment.R;
+import cn.studyou.parchment.log.L;
+import cn.studyou.parchment.utils.AppIntroUtil;
+
+public class StartUpActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start_up);
+        int launchMode = AppIntroUtil.getThis().getLaunchMode();
+        //自己的控制逻辑
+        if(launchMode == 3){
+            L.e("Again start!");
+        }else if(launchMode == 2){
+            L.e("Update start!");
+        }else if(launchMode == 1){
+            L.e("First start!");
+        }
+    }
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（四）全屏幕延迟启动" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/07/羊皮书APP（Android版）开发系列（四）全屏幕延迟启动/" class="article-date">
+  	<time datetime="2016-03-07T12:06:34.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/羊皮书APP（Android版）开发系列（四）全屏幕延迟启动/">羊皮书APP（Android版）开发系列（四）全屏幕延迟启动</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>APP启动时经常会有一张启动图片，有几秒钟的展示时间，做法很简单，使用Handler的postDelayed方法即可。</p>
+</blockquote>
+<ul>
+<li>配置全屏：在styles.xml中定义Theme，代码如下：</li>
+</ul>
+<pre><code>&lt;!--设置-全屏--&gt;
+&lt;style name="NoTitleFullscreen" parent="Theme.AppCompat.Light.NoActionBar"&gt;
+        &lt;item name="android:windowNoTitle"&gt;true&lt;/item&gt;
+        &lt;item name="windowActionBar"&gt;false&lt;/item&gt;
+        &lt;item name="android:windowFullscreen"&gt;true&lt;/item&gt
+        &lt;item name="android:windowContentOverlay"&gt;@null&lt;/item&gt;
+&lt;/style&gt;</code></pre>
+
+<ul>
+<li>在AndroidManifest.xml文件中使用这个Theme</li>
+</ul>
+<pre><code>android:theme="@style/NoTitleFullscreen"</code></pre>
+
+<ul>
+<li>配置启动延迟代码如下：</li>
+</ul>
+<pre><code> private void delayedStart(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(IntentUtil.getLauncherIntent().setClass(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        }, 3000);
+    }
+
+</code></pre>
+
+
+<ul>
+<li>调用方式：在Activity的onCreate方法中调用即可：</li>
+</ul>
+<pre><code> delayedStart();
+</code></pre>      
+
+<ul>
+<li>这里有一个Intent的工具类IntentUtil.java，作用是用于启动Activity并可以传递参数。IntentUtil.java代码如下：</li>
+</ul>
+<pre><code>package cn.studyou.parchment.utils;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+/**
+ * 基本功能：Intent工具类
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class IntentUtil {
+    private static final String TAG = IntentUtil.class.getSimpleName();
+
+    public static Intent getLauncherIntent() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        return intent;
+    }
+    public static void logIntent(String tag, Intent intent) {
+        if (intent == null) {
+            return;
+        }
+        StringBuffer sb = new StringBuffer();
+        sb.append("\nAction:" + intent.getAction());
+        sb.append("\nData:" + intent.getData());
+        sb.append("\nDataStr:" + intent.getDataString());
+        sb.append("\nScheme:" + intent.getScheme());
+        sb.append("\nType:" + intent.getType());
+        Bundle extras = intent.getExtras();
+        if (extras != null && !extras.isEmpty()) {
+            for (String key : extras.keySet()) {
+                Object value = extras.get(key);
+                sb.append("\nEXTRA: {" + key + "::" + value + "}");
+            }
+        } else {
+            sb.append("\nNO EXTRAS");
+        }
+        Log.i(tag, sb.toString());
+    }
+
+    public static int sdkVersion() {
+        return new Integer(Build.VERSION.SDK).intValue();
+    }
+
+    public static void startDialer(Context context, String phoneNumber) {
+        try {
+            Intent dial = new Intent();
+            dial.setAction(Intent.ACTION_DIAL);
+            dial.setData(Uri.parse("tel:" + phoneNumber));
+            context.startActivity(dial);
+        } catch (Exception ex) {
+            Log.e(TAG, "Error starting phone dialer intent.", ex);
+            Toast.makeText(context,
+                    "Sorry, we couldn't find any app to place a phone call!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void startSmsIntent(Context context, String phoneNumber) {
+        try {
+            Uri uri = Uri.parse("sms:" + phoneNumber);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.putExtra("address", phoneNumber);
+            intent.setType("vnd.android-dir/mms-sms");
+            context.startActivity(intent);
+        } catch (Exception ex) {
+            Log.e(TAG, "Error starting sms intent.", ex);
+            Toast.makeText(context,
+                    "Sorry, we couldn't find any app to send an SMS!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void startEmailIntent(Context context, String emailAddress) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("plain/text");
+            intent.putExtra(Intent.EXTRA_EMAIL,
+                    new String[]{emailAddress});
+            context.startActivity(intent);
+        } catch (Exception ex) {
+            Log.e(TAG, "Error starting email intent.", ex);
+            Toast.makeText(context,
+                    "Sorry, we couldn't find any app for sending emails!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void startWebIntent(Context context, String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(intent);
+        } catch (Exception ex) {
+            Log.e(TAG, "Error starting url intent.", ex);
+            Toast.makeText(context,
+                    "Sorry, we couldn't find any app for viewing this url!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+</code></pre>
+
+<ul>
+<li>使用方式：</li>
+</ul>
+<pre><code> startActivity(IntentUtil.getLauncherIntent().setClass(getApplicationContext(), MainActivity.class));
+ startActivity(IntentUtil.getLauncherIntent().setClass(getApplicationContext(), MainActivity.class).putExtra("name","name"));
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（五）APP引导页实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/07/羊皮书APP（Android版）开发系列（五）APP引导页实现/" class="article-date">
+  	<time datetime="2016-03-07T12:06:20.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/羊皮书APP（Android版）开发系列（五）APP引导页实现/">羊皮书APP（Android版）开发系列（五）APP引导页实现</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>github上有一个引导页感觉不错，就拿来使用，地址：<a href="https://github.com/PaoloRotolo/AppIntro" target="_blank" rel="external">AppIntro</a></p>
+</blockquote>
+<ul>
+<li><p>导入AppIntro库的方法(两种)：</p>
+<ol>
+<li><p>方法一： 到github上下载AppIntro，解压，将library文件夹拷贝到自己项目的根目录下，重命名为app<strong><strong>intro</strong></strong>library，在settings.gradle文件中添加：include ‘:app’,’:app<strong>_</strong>intro<strong><strong>library’,在build.gradle文件中添加：    compile project(‘:app_</strong></strong>intro____library’)，重新编译后即可使用。</p>
+</li>
+<li><p>方法二： 直接在 build.gradle文件中添加如下代码：</p>
+</li>
+</ol>
+<pre><code>repositories {
+  mavenCentral()
+}
+dependencies {
+compile 'com.github.paolorotolo:appintro:3.4.0'
+}</code></pre>
+</li>
+<li><p>AppIntro的使用：</p>
+</li>
+</ul>
+<ul>
+<li>新建SlideFragment，展示介绍页面，代码如下：</li>
+</ul>
+<pre><code>package cn.studyou.parchment.fragment;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+/**
+ * 基本功能：引导页Fragment
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class SlideFragment extends Fragment {
+    private static final String ARG_LAYOUT_RES_ID = "layoutResId";
+
+    public static SlideFragment newInstance(int layoutResId) {
+        SlideFragment slideFragment = new SlideFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(ARG_LAYOUT_RES_ID, layoutResId);
+        slideFragment.setArguments(args);
+
+        return slideFragment;
+    }
+
+    private int layoutResId;
+
+    public SlideFragment() {}
+
+    @Override
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID))
+            layoutResId = getArguments().getInt(ARG_LAYOUT_RES_ID);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
+        return inflater.inflate(layoutResId, container, false);
+    }
+}</code></pre>
+
+
+
+<ul>
+<li>新建AppIntroActivity继承自AppIntro，代码如下：</li>
+</ul>
+<pre><code>package cn.studyou.parchment.activity;
+
+import android.os.Bundle;
+
+import com.github.paolorotolo.appintro.AppIntro;
+
+import cn.studyou.parchment.R;
+import cn.studyou.parchment.fragment.SlideFragment;
+import cn.studyou.parchment.log.L;
+import cn.studyou.parchment.utils.IntentUtil;
+
+public class AppIntroActivity extends AppIntro {
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+
+        addSlide(SlideFragment.newInstance(R.layout.intro1));
+        addSlide(SlideFragment.newInstance(R.layout.intro2));
+        addSlide(SlideFragment.newInstance(R.layout.intro3));
+        addSlide(SlideFragment.newInstance(R.layout.intro4));
+        setBarColor(getResources().getColor(R.color.green));
+        setSeparatorColor(getResources().getColor(R.color.colorAccent));
+        setVibrateIntensity(30);
+        setSkipText(getString(R.string.skip));
+        setDoneText(getString(R.string.enter));
+    }
+
+    private void startMain(){
+        startActivity(IntentUtil.getLauncherIntent().setClass(getApplicationContext(),MainActivity.class));
+        finish();
+    }
+    @Override
+    public void onSkipPressed() {
+        L.e("onSkipPressed");
+        startMain();
+    }
+
+    @Override
+    public void onDonePressed() {
+        L.e("onDonePressed");
+        startMain();
+    }
+
+    @Override
+    public void onSlideChanged() {
+        L.e("onSlideChanged");
+    }
+
+    @Override
+    public void onNextPressed() {
+        L.e("onNextPressed");
+    }
+}</code></pre>
+
+
+
+<ul>
+<li>R.layout.intro1布局文件是你想要展示的APP介绍的页面。</li>
+<li>启动APP设置跳转到此Activity即可查看效果。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（一）Icon图片生成神器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/07/羊皮书APP（Android版）开发系列（一）Icon图片生成神器/" class="article-date">
+  	<time datetime="2016-03-07T12:05:06.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/羊皮书APP（Android版）开发系列（一）Icon图片生成神器/">羊皮书APP（Android版）开发系列（一）Icon图片生成神器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>app icon图片生成神器可以帮助我们节省时间，提高工作效率。</p>
+</blockquote>
+<ul>
+<li><p>工欲善其事，必先利其器，我们要开发一款app，首先我们肯定要知道app的名字，其次我们就要准备app的logo图片，而则个logo图片又有多种尺寸，包括Android和IOS，需要十多种不同尺寸大小的icon，这个时候，如果有美工专门负责提供，那我们就可以Copy到项目中直接使用，但是，美工提供这些图片的时候，如果是一张一张生成的，那工作量也是不小的，为了节省自己的时间，更为节省他人的时间，我推荐使用MakeAppIcon工具来完成。</p>
+</li>
+<li><p>MakeAppIcon是一款可以在线生成各种不同尺寸icon的工具，点击<a href="">MakeAppIcon</a>打开网址，上传原始icon图片，几分钟后，输入邮箱，即可将生成的所有尺寸的icon发送到自己的邮箱，下载即可。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -352,380 +1644,6 @@
         <p class="article-more-link">
           <a  href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/#more">more >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-IOS开发零散知识点（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/16/IOS开发零散知识点（一）/" class="article-date">
-  	<time datetime="2015-12-16T08:58:11.000Z" itemprop="datePublished">2015-12-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/16/IOS开发零散知识点（一）/">IOS开发零散知识点（一）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-iOS_UItableview_一句话去掉多余的分割线,在_viewDidLoad方法中添加下面这句话">1.iOS UItableview 一句话去掉多余的分割线,在 viewDidLoad方法中添加下面这句话</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#19968;&#21477;&#35805;&#21435;&#25481;&#22810;&#20313;&#30340;&#20998;&#21106;&#32447;&#10;self.homeWorkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];</span><br></pre></td></tr></table></figure>
-<h4 id="2-_设置下一个界面的返回按钮显示为“返回”">2. 设置下一个界面的返回按钮显示为“返回”</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];&#10;temporaryBarButtonItem.title = @&#34;&#36820;&#22238;&#34;;&#10;self.navigationItem.backBarButtonItem = temporaryBarButtonItem;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/12/16/IOS开发零散知识点（一）/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-UITextView添加placeholder灰色提示文字" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/15/UITextView添加placeholder灰色提示文字/" class="article-date">
-  	<time datetime="2015-12-15T06:36:01.000Z" itemprop="datePublished">2015-12-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/15/UITextView添加placeholder灰色提示文字/">UITextView添加placeholder灰色提示文字</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>UITextView没有UITextField的placeholder属性来提示输入框信息，也没有其他属性或接口来设置。</p>
-<p>有人在UITextView上覆盖个UILabel来显示placeholder信息，也是一种解决思路。</p>
-<p>但是从写程序的角度来说，用继承UITextView来解决问题似乎更加合理些。</p>
-<p>新建UIPlaceholderTextView类继承自UITextView。</p>
-<p>代码如下：</p>
-<p>UIPlaceholderTextView.h文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@interface UIPlaceholderTextView : UITextView  &#10;&#10;@property(nonatomic, strong) NSString *placeholder;  //&#28784;&#33394;&#25552;&#31034;&#25991;&#23383;  &#10;&#10;@end</span><br></pre></td></tr></table></figure></p>
-<p>UIPlaceholderTextView.m文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#import &#34;UIPlaceholderTextView.h&#34;  &#10;&#10;@implementation UIPlaceholderTextView  &#10;&#10;- (id)initWithFrame:(CGRect)frame &#123;  &#10;if ((self = [super initWithFrame:frame])) &#123;  &#10;[self awakeFromNib];  &#10;&#125;  &#10;return self;  &#10;&#125;  &#10;&#10;&#10;- (void)awakeFromNib &#123;  &#10;[self addObserver];  &#10;&#125;  &#10;&#10;#pragma mark &#27880;&#20876;&#36890;&#30693;  &#10;- (void)addObserver &#123;  &#10;[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:self];  &#10;[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidEndEditing:) name:UITextViewTextDidEndEditingNotification object:self];  &#10;&#125;  &#10;&#10;#pragma mark &#31227;&#38500;&#36890;&#30693;  &#10;- (void)dealloc &#123;  &#10;[[NSNotificationCenter defaultCenter] removeObserver:self];  &#10;&#125;  &#10;&#10;#pragma mark &#24320;&#22987;&#32534;&#36753;  &#10;- (void)textDidBeginEditing:(NSNotification *)notification &#123;  &#10;if ([super.text isEqualToString:_placeholder]) &#123;  &#10;super.text = @&#34;&#34;;  &#10;[super setTextColor:[UIColor blackColor]];  &#10;&#125;  &#10;&#125;  &#10;&#10;#pragma mark &#32467;&#26463;&#32534;&#36753;  &#10;- (void)textDidEndEditing:(NSNotification *)notification &#123;  &#10;if (super.text.length == 0) &#123;  &#10;super.text = _placeholder;  &#10;//&#22914;&#26524;&#25991;&#26412;&#26694;&#20869;&#26159;&#21407;&#26412;&#30340;&#25552;&#31034;&#25991;&#23383;&#65292;&#21017;&#26174;&#31034;&#28784;&#33394;&#23383;&#20307;  &#10;[super setTextColor:[UIColor lightGrayColor]];  &#10;&#125;  &#10;&#125;  &#10;&#10;#pragma mark &#37325;&#20889;setPlaceholder&#26041;&#27861;  &#10;- (void)setPlaceholder:(NSString *)aPlaceholder &#123;  &#10;_placeholder = aPlaceholder;  &#10;[self textDidEndEditing:nil];  &#10;&#125;  &#10;&#10;#pragma mark &#37325;&#20889;getText&#26041;&#27861;  &#10;- (NSString *)text &#123;  &#10;NSString *text = [super text];  &#10;if ([text isEqualToString:_placeholder]) &#123;  &#10;return @&#34;&#34;;  &#10;&#125;  &#10;return text;  &#10;&#125;  &#10;&#10;&#10;@end</span><br></pre></td></tr></table></figure>
-<p>在使用UIPlaceholderTextView的控制器的viewDidLoad方法里添加如下代码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.placeHolderTextView.placeholder=@&#34;&#36825;&#19968;&#21051;&#20320;&#24819;&#35828;&#20160;&#20040;......&#34;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-升级到Xcode 7和IOS9带来的一些问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/升级到Xcode 7和IOS9带来的一些问题/" class="article-date">
-  	<time datetime="2015-11-12T13:11:03.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/升级到Xcode 7和IOS9带来的一些问题/">升级到Xcode 7和IOS9带来的一些问题</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1.无法访问http协议的地址</strong></p>
-<ul>
-<li>错误信息：</li>
-</ul>
-<blockquote>
-<p>The resource could not be loaded because the App Transport Security<br>policy requires the use of a secure connection.</p>
-</blockquote>
-<ul>
-<li>解决办法：</li>
-</ul>
-<blockquote>
-<p>iOS9让所有的HTTP默认使用了HTTPS，原来的HTTP协议传输都改成TLS1.2协议进行传输。直接造成的情况就是App发请求的时候弹出网络无法连接。解决办法就是在项目的info.plist<br>文件里加上如下节点： NSAppTransportSecurity - NSAllowsArbitraryLoads<br>这个子节点的意思是：是否允许任性的加载？！<br>设为YES的话就将禁用了AppTransportSecurity转而使用用户自定义的设置，这个问题就解决了。</p>
-</blockquote>
-<p><img src="/images/000003.png" alt="这是一张图片"><br><strong>2.运行时bitcode报错</strong></p>
-<ul>
-<li>错误信息：</li>
-</ul>
-<blockquote>
-<p>XXXX’ does not contain bitcode. You must rebuild it with bitcode<br>enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from<br>the vendor, or disable bitcode for this target. for architecture arm64</p>
-</blockquote>
-<ul>
-<li>解决办法：</li>
-</ul>
-<blockquote>
-<p>禁用bitcode，选为NO.(iOS中bitcode是默认YES，watchOS中bitcodes是不让改的必须YES。</p>
-</blockquote>
-<p><img src="/images/000002.png" alt="这是一张图片"></p>
-<p>问题的原因：bitcode的理解应该是把程序编译成的一种过渡代码，然后苹果再把这个过渡代码编译成可执行的程序。bitcode也允许苹果在后期重新优化我们程序的二进制文件，有类似于App瘦身的思想。某些第三方库还不支持bitcode。要不然是等待库的开发者升级了此项功能我们更新库，要不就是把这个bitcode禁用。</p>
-<p><strong>3.第三方分享功能报错canOpenURL</strong></p>
-<ul>
-<li>错误信息：</li>
-</ul>
-<p>qq／微信分享功能报错如下：</p>
-<blockquote>
-<p>-canOpenURL: failed for URL: “mqq://“ - error: “This app is not allowed to query for scheme mqq”</p>
-</blockquote>
-<ul>
-<li>解决办法：<br>在info.plist中添加：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>LSApplicationQueriesSchemes<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqbrowser<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqq<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqapi<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV2<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>weixin<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>wechat<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>wtloginmqq2<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqopenSDKapiV3<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>mqqwpa<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加后如下图：<br><img src="/images/000001.png" alt="这是一张图片"></li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Hexo提交文章到github 错误" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/Hexo提交文章到github 错误/" class="article-date">
-  	<time datetime="2015-11-12T13:10:33.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/Hexo提交文章到github 错误/">Hexo提交文章到github 错误 access rights and the repository exists.</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>- 错误信息：
-</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Permission denied (publickey).</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure></p>
-<p><strong>- 解决办法：
-</strong><br>编辑hexo的_config.yml文件<br>将：repo: git@github.com:username/username.github.io.git<br>修改为：repo: <a href="https://github.com/username/username.github.io.git" target="_blank" rel="external">https://github.com/username/username.github.io.git</a> </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Hexo中发布带有图片的文章到Github" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/Hexo中发布带有图片的文章到Github/" class="article-date">
-  	<time datetime="2015-11-12T13:09:42.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/Hexo中发布带有图片的文章到Github/">Hexo中发布带有图片的文章到Github</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1.在hexo目录下的source文件夹中新建文件夹images，在images文件夹中添加所需要的图片。</strong></p>
-<p><strong>2.在文章.md文件中只需要使用下面标签即可。
-</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![这是一张图片](/images/xxxx.png)</span><br></pre></td></tr></table></figure></p>
-<p><strong>3.执行命令提交至Github
-</strong></p>
-<blockquote>
-<p> hexo clean<br>hexo d</p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-hexo发布博客到github，其他文件被删除问题解决" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决/" class="article-date">
-  	<time datetime="2015-11-12T13:07:19.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决/">hexo d命令发布博客到github，其他文件被删除问题解决</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在hexo d发布到github时，会把其他的文件删除，比如我们的md文件或域名配置文件CNAME，解决办法很简单，如下：</p>
-<ul>
-<li>在source文件夹下新建一个md文件写入内容或CNAME文件写入域名，然后执行hexo d提交后就正常了。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
       
       <div class="clearfix"></div>
     </div>
