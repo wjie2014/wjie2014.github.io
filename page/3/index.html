@@ -118,6 +118,191 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-加盐hash保存密码的正确方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/04/加盐hash保存密码的正确方式/" class="article-date">
+  	<time datetime="2016-03-04T01:19:55.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/04/加盐hash保存密码的正确方式/">加盐hash保存密码的正确方式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>提醒：</li>
+</ul>
+<blockquote>
+<p>无论是web开发还是移动端开发，都会遇到设计用户系统的需求，用户系统最重要的方面就是如何保存用户的密码，通常大家会直接采用md5加密，md5加盐加密，sha1加密，sha1加盐加密等，虽然用户加密看起来很简单，但是会有很多人犯错，单纯的加密会有很多破解方式，如：字典暴力破解，双向查表等。 如果你打算自己写一段代码来进行密码hash，那么赶紧停下吧。这样太容易犯错了。这个提醒适用于每一个人，不要自己写密码的hash算法 ！关于保存密码的问题已经有了成熟的方案，那就是使用phpass或者本文提供的源码。</p>
+</blockquote>
+<ul>
+<li>Java Hash加密源码：
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/04/加盐hash保存密码的正确方式/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Android通过Wifi调试程序" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/02/Android通过Wifi调试程序/" class="article-date">
+  	<time datetime="2016-03-02T07:45:49.000Z" itemprop="datePublished">2016-03-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/02/Android通过Wifi调试程序/">Android通过Wifi调试程序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：">很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：</h5><ol>
+<li>手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。</li>
+<li>进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-tools</li>
+<li>打开命令行 adb tcpip 5555<blockquote>
+<p> 以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>你会发现，手机顶端不在出现原先有的图标  你会发现，手机顶端不在出现原先有的图标</p>
+</blockquote>
+</li>
+<li>使电脑连接手机的wifi的地址<blockquote>
+<p>打开手机连接wifi的地方，并得到wifi的地址。我的为：192.168.1.129<br>接着在上次一个步骤的命令行中输入 adb connect 192.168.1.129<br>出现：connected to 192.168.1.129:5555 代表执行成功</p>
+</blockquote>
+</li>
+<li>现在你可以断开usb线了（其实在第三步后，就可以断开了），然后像往常run一个应用程序，即可。</li>
+<li>此时你的usb对于此手机已经作废，那么如何变成usb试调模式呢？也就是还原呢。<blockquote>
+<p>很简单，usb数据线连接，在同一个命令行。输入<br>adb usb<br>出现：restarting in USB mode 说明成功。<br>还原原来的状态。</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-IOS多选折叠树（使用RATreeView实现）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/" class="article-date">
+  	<time datetime="2015-12-21T13:11:12.000Z" itemprop="datePublished">2015-12-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/">IOS多选折叠树（使用RATreeView实现）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>项目需求：要实现一个可折叠可多选的View，RATreeView库很不错，所以就借助RATreeView实现下这个多选折叠树，有类似需求的伙伴可以参考下。<br>（RATreeView地址：<a href="https://github.com/Augustyniak/RATreeView">https://github.com/Augustyniak/RATreeView</a>）<br>（此项目地址：<a href="https://github.com/wjie2014/RATreeViewForMultiSelected">https://github.com/wjie2014/RATreeViewForMultiSelected</a>）</p>
+</blockquote>
+<p><strong>效果图如下：</strong><br><img src="/images/000004.gif" alt="这是一张图片"></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-IOS开发零散知识点（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -557,191 +742,9 @@
 
 
   
-    <article id="post-在hexo的博客系统中写一篇文章并发布到github" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/在hexo的博客系统中写一篇文章并发布到github/" class="article-date">
-  	<time datetime="2015-11-12T13:06:52.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/在hexo的博客系统中写一篇文章并发布到github/">在hexo的博客系统中写一篇文章并发布到github</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>（一）下面是写文章的一种方式</strong></p>
-<p>1.进去到项目的source/_posts文件夹，创建文件如：我的一篇文章.md。</p>
-<blockquote>
-<p>cd source/_posts</p>
-<p>touch 我的一篇文章.md</p>
-</blockquote>
-<p>2.hexo是支持markdown，使用在线markdown编辑器写好文章，全选文章copy，打开刚刚创建的文件，粘贴，保存。在浏览器上即可访问到刚刚添加的文章了。</p>
-<p>附：在线markdown地址：<a href="https://www.zybuluo.com/mdeditor#211364" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#211364</a></p>
-<p><strong>（二）发布hexo文章到github</strong></p>
-<p>1.创建github仓库</p>
-<ul>
-<li>名字必须是:   your_github_name.github.io </li>
-<li>例如我的github:     wjie2014.github.io<br>wjie2014是我的github账户的名称，必须注意这个，不要写错，否则是看不到发布的博客的。</li>
-</ul>
-<p>2.修改_config.yml</p>
-<ul>
-<li>编辑全局配置文件 _config.yml 中的 deploy 部分</li>
-</ul>
-<blockquote>
-<p>deploy:</p>
-<p>  type: git</p>
-<p>  repo: git@github.com:wjie2014/wjie2014.github.io.git</p>
-<p>  branch: master</p>
-</blockquote>
-<p>3.部署</p>
-<blockquote>
-<p>hexo clean//清理数据缓存，建议每次都清楚</p>
-<p>hexo d //部署</p>
-</blockquote>
-<ul>
-<li>部署成功的信息</li>
-</ul>
-<blockquote>
-<p>[info] Deploy done: github</p>
-</blockquote>
-<ul>
-<li>部署失败的信息</li>
-</ul>
-<blockquote>
-<p>ERROR Deployer not found: git</p>
-</blockquote>
-<ul>
-<li>解决办法：</li>
-</ul>
-<p>控制台依次运行命令</p>
-<blockquote>
-<p>npm install hexo-deployer-git –save</p>
-<p>hexo g</p>
-<p>hexo d</p>
-</blockquote>
-<p>4.在浏览器输入<a href="http://wjie2014.github.io/" target="_blank" rel="external">http://wjie2014.github.io/</a>就能看到网页了。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-使用hexo搭建团队的技术博客" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/使用hexo搭建团队的技术博客/" class="article-date">
-  	<time datetime="2015-11-12T13:06:38.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/使用hexo搭建团队的技术博客/">使用hexo搭建团队的技术博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用hexo搭建技术博客很方便很简单，下面我就以Mac系统为例详细介绍下hexo的安装步骤。</p>
-<p>Mac下安装hexo的步骤：（官方地址：<a href="https://hexo.io/zh-cn/docs/index.html）" target="_blank" rel="external">https://hexo.io/zh-cn/docs/index.html）</a><br>1.<strong>安装nodejs</strong><br>下载地址：<a href="https://nodejs.org/en/，下载后点击安装即可。" target="_blank" rel="external">https://nodejs.org/en/，下载后点击安装即可。</a></p>
-<p>2.<strong>安装Git</strong><br>下载地址：<a href="http://git-scm.com/download/mac，下载后点击安装即可。" target="_blank" rel="external">http://git-scm.com/download/mac，下载后点击安装即可。</a></p>
-<p>3.<strong>安装hexo</strong><br>首先打开控制台，输入 sudo -i 切换为root用户（使用root用户保证对文件夹具有访问权限），然后输入npm install -g hexo-cli，等待大概30s时间，出现success字样，同时列出hexo的目录，表示已经安装成功了。</p>
-<p>4.<strong>初始化hexo文件</strong><br>在你想要存放hexo工程的目录，新建hexo文件夹（文件名随意，这里我直接使用hexo作为文件夹名称了），并切换到hexo，依次执行下列命令</p>
-<blockquote>
-<p>  hexo init hexo-lcx</p>
-<p>  hexo init</p>
-<p>  npm install</p>
-<p>  npm install hexo-deployer-git</p>
-</blockquote>
-<p>成功后可以看到hexo文件夹下已经存在了hexo的全部文件。</p>
-<p>5.<strong>启动hexo</strong><br>控制台输入： </p>
-<blockquote>
-<p>hexo server</p>
-</blockquote>
-<p>提示： INFO  Hexo is running at <a href="http://0.0.0.0:4000/" target="_blank" rel="external">http://0.0.0.0:4000/</a>. Press Ctrl+C to stop.<br>然后在浏览器中输入地址<a href="http://0.0.0.0:4000/即可看到hexo的hello" target="_blank" rel="external">http://0.0.0.0:4000/即可看到hexo的hello</a> world了。<br>按Ctrl+C停止本地预览服务。</p>
-<p>6.<strong>更换主题</strong><br>hexo的主题有很多种，网上提到的可以更换的主题如下：<br><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">github上的hexo的主题大全</a><br><a href="http://www.zhihu.com/question/24422335/answer/46357100" target="_blank" rel="external">知乎上的hexo的主题排行版</a><br><a href="https://hexo.io/themes/" target="_blank" rel="external">hexo官方主题</a><br>下面以yilia为例介绍下更换主题的步骤：yilia地址<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a><br>更换步骤：<br>（1）安装主题<br>进入hexo的根目录，执行安装命令</p>
-<blockquote>
-<p> git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
-</blockquote>
-<p>（2）配置主题<br>修改hexo根目录下的 _config.yml ：</p>
-<blockquote>
-<p>vi _config.yml</p>
-</blockquote>
-<p>修改主题为 theme: yilia<br>（3）更新主题</p>
-<blockquote>
-<p>cd themes/yilia</p>
-<p>git pull</p>
-</blockquote>
-<p>ok，输入 hexo server命令，在浏览器中输入地址访问。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

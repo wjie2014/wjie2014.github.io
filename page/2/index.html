@@ -118,6 +118,242 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-羊皮书APP（Android版）开发系列（九）通过Wifi调试程序" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/29/羊皮书APP（Android版）开发系列（九）通过Wifi调试程序/" class="article-date">
+  	<time datetime="2016-03-29T01:15:47.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/29/羊皮书APP（Android版）开发系列（九）通过Wifi调试程序/">羊皮书APP（Android版）开发系列（九）通过Wifi调试程序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：</p>
+</blockquote>
+<ol>
+<li><p>手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。</p>
+</li>
+<li><p>进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-tools</p>
+</li>
+<li><p>打开命令行 adb tcpip 5555</p>
+<blockquote>
+<p> 以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>你会发现，手机顶端不在出现原先有的图标  你会发现，手机顶端不在出现原先有的图标。</p>
+</blockquote>
+</li>
+<li><p>使电脑连接手机的wifi的地址</p>
+<blockquote>
+<p>打开手机连接wifi的地方，并得到wifi的地址。我的为：192.168.1.129<br>接着在上次一个步骤的命令行中输入 adb connect 192.168.1.129<br>出现：connected to 192.168.1.129:5555 代表执行成功。</p>
+</blockquote>
+</li>
+<li><p>现在你可以断开usb线了（其实在第三步后，就可以断开了），然后像往常run一个应用程序，即可。</p>
+</li>
+<li><p>此时你的usb对于此手机已经作废，那么如何变成usb试调模式呢？也就是还原呢。</p>
+<blockquote>
+<p>很简单，usb数据线连接，在同一个命令行。输入<br>adb usb<br>出现：restarting in USB mode 说明成功。<br>还原原来的状态。</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（八）用户登录" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/29/羊皮书APP（Android版）开发系列（八）用户登录/" class="article-date">
+  	<time datetime="2016-03-29T01:15:35.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/29/羊皮书APP（Android版）开发系列（八）用户登录/">羊皮书APP（Android版）开发系列（八）用户登录</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>用户登录功能是APP中最最常见的功能，看似简单，但也有一些需要注意的地方。</p>
+</blockquote>
+<h2 id="1-用户登录接口调用设计">1.用户登录接口调用设计</h2><blockquote>
+<p>用户登录模块，必然涉及到服务器接口的调用，而在开发的过程中经常会遇见APP着急使用接口，而服务器接口开发人员还未准备好相应接口的情况，这时候做为App开发者，我们要为自己设计专门的服务类，约定服务器返回Json数据的格式，进行开发。下面以登录接口为例来看下接口的调用。</p>
+</blockquote>
+<ul>
+<li>定义接口配置xml文件url.xml，在res目录下创建xml文件夹，然后创建url.xml，内容如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">Node</span></span><br><span class="line">        <span class="attribute">IsNet</span>=<span class="value">"false"</span></span><br><span class="line">        <span class="attribute">Key</span>=<span class="value">"login"</span></span><br><span class="line">        <span class="attribute">Expires</span>=<span class="value">"0"</span></span><br><span class="line">        <span class="attribute">NetType</span>=<span class="value">"post"</span></span><br><span class="line">        <span class="attribute">APIClass</span>=<span class="value">"cn.studyou.parchment.service.APILoginService"</span></span><br><span class="line">        <span class="attribute">Url</span>=<span class="value">"http://www.weather.com.cn/data/sk/"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>有了接口配置文件，我们就可以定义Url管理工具UrlConfigManager.java，用来判断使用本地测试数据还是直接调用服务器接口。</li>
+</ul>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.studyou.parchment.net;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.content.res.XmlResourceParser;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.xmlpull.v1.XmlPullParser;</span><br><span class="line"><span class="keyword">import</span> org.xmlpull.v1.XmlPullParserException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.studyou.parchment.R;</span><br><span class="line"><span class="keyword">import</span> cn.studyou.parchment.service.APIBaseService;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 基本功能：Url管理类</span><br><span class="line"> * 创建：王杰</span><br><span class="line"> * 创建时间：16/3/8</span><br><span class="line"> * 邮箱：w489657152<span class="doctag">@gmail</span>.com</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UrlConfigManager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> UrlConfigManager service = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">UrlConfigManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="function">UrlConfigManager <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (UrlConfigManager.service == <span class="keyword">null</span>) &#123;</span><br><span class="line">            UrlConfigManager.service = <span class="keyword">new</span> UrlConfigManager();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> UrlConfigManager.service;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function">String <span class="title">getData</span><span class="params">(<span class="keyword">final</span> Activity activity,String key)</span> </span>&#123;</span><br><span class="line">        String jsonResult = <span class="string">""</span>;</span><br><span class="line">        XmlResourceParser xmlParser = activity.getApplication().getResources().getXml(R.xml.url);</span><br><span class="line">        <span class="keyword">int</span> eventCode;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            eventCode = xmlParser.getEventType();</span><br><span class="line">            <span class="keyword">while</span> (eventCode != XmlPullParser.END_DOCUMENT) &#123;</span><br><span class="line">                <span class="keyword">switch</span> (eventCode) &#123;</span><br><span class="line">                    <span class="keyword">case</span> XmlPullParser.START_DOCUMENT:</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> XmlPullParser.START_TAG:</span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">"Node"</span>.equals(xmlParser.getName())&amp;&amp;key.equals(xmlParser.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Key"</span>))) &#123;</span><br><span class="line">                            <span class="keyword">final</span> String isNet = xmlParser.getAttributeValue(<span class="keyword">null</span>,</span><br><span class="line">                                    <span class="string">"IsNet"</span>);</span><br><span class="line">                            <span class="keyword">if</span> (<span class="string">"true"</span>.equals(isNet)) &#123;</span><br><span class="line">                                <span class="comment">//网络数据url</span></span><br><span class="line">                                <span class="keyword">final</span> String url = xmlParser.getAttributeValue(<span class="keyword">null</span>,</span><br><span class="line">                                        <span class="string">"Url"</span>);</span><br><span class="line">                                jsonResult = url;</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                <span class="keyword">final</span> String apiClass = xmlParser.getAttributeValue(<span class="keyword">null</span>,</span><br><span class="line">                                        <span class="string">"APIClass"</span>);</span><br><span class="line">                                <span class="comment">//本地数据class包名</span></span><br><span class="line">                                jsonResult = apiClass;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> XmlPullParser.END_TAG:</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">default</span>:</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                eventCode = xmlParser.next();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> XmlPullParserException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            xmlParser.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> jsonResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 反射方式获取本地数据</span><br><span class="line">     *</span><br><span class="line">     * <span class="doctag">@param</span> className</span><br><span class="line">     * <span class="doctag">@return</span></span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function">String <span class="title">invoke</span><span class="params">(String className)</span> </span>&#123;</span><br><span class="line">        String jsonResult = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            APIBaseService apiBaseService = (APIBaseService) Class.forName(</span><br><span class="line">                    className).newInstance();</span><br><span class="line">            jsonResult = apiBaseService.getJsonData();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> jsonResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>有了UrlConfigManager工具后，在以后的开发中，我们配置好url.xml后, 就可以通过UrlConfigManager来判定登录方式了。在Activity中使用：</li>
+</ul>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="literal">result</span> = <span class="type">UrlConfigManager</span>.getInstance().getData(this, <span class="string">"login"</span>);</span><br><span class="line">        boolean isUrl = <span class="type">RegexUtils</span>.checkURL(<span class="literal">result</span>);</span><br><span class="line">        <span class="keyword">if</span> (isUrl) &#123;</span><br><span class="line">        <span class="type">Map</span> headers = new <span class="type">HashMap</span>();</span><br><span class="line">            <span class="type">Map</span> params = new <span class="type">HashMap</span>();</span><br><span class="line">            //请求网络数据</span><br><span class="line">            <span class="type">OkHttpUtils</span></span><br><span class="line">                    .post()</span><br><span class="line">                    .url(<span class="literal">result</span>)</span><br><span class="line">                    .headers(headers)</span><br><span class="line">                    .params(params)</span><br><span class="line">                    .build()</span><br><span class="line">                    .execute(new <span class="type">StringCallback</span>() &#123;</span><br><span class="line">                        @<span class="type">Override</span></span><br><span class="line">                        public <span class="type">void</span> onError(<span class="type">Call</span> call, <span class="type">Exception</span> e) &#123;</span><br><span class="line">                            L.e(<span class="string">"请求数据失败"</span>);</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        @<span class="type">Override</span></span><br><span class="line">                        public <span class="type">void</span> onResponse(<span class="type">String</span> s) &#123;</span><br><span class="line"></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            //使用本地数据</span><br><span class="line">            <span class="type">String</span> jsonResult = <span class="type">UrlConfigManager</span>.getInstance().invoke(<span class="literal">result</span>);</span><br><span class="line">            <span class="type">User</span> user = new <span class="type">Gson</span>().fromJson(jsonResult, <span class="type">User</span>.class);</span><br><span class="line">            user.save();</span><br><span class="line">            startMainActivity();</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里用到了User类，User类很简单就是一个实体。上面我们在url.xml配置了一个登录服务类APILoginService，它就是用来提供本地测试数据的类，代码如下：</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.studyou.parchment.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.gson.<span class="type">Gson</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.studyou.parchment.entity.<span class="type">User</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 基本功能：用户登录服务类</span><br><span class="line"> * 创建：王杰</span><br><span class="line"> * 创建时间：16/3/8</span><br><span class="line"> * 邮箱：w489657152@gmail.com</span><br><span class="line"> */</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">APILoginService</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">APIBaseService</span> &#123;</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    public <span class="type">String</span> getJsonData() &#123;</span><br><span class="line">        <span class="type">User</span> user = <span class="keyword">new</span> <span class="type">User</span>();</span><br><span class="line">        user.setUserType(<span class="number">1</span>);</span><br><span class="line">        user.setUserName(<span class="string">"wangjie"</span>);</span><br><span class="line">        user.setSessionId(<span class="string">"209EAE20CEF54355B3FC1086CB9CEAE2"</span>);</span><br><span class="line">        <span class="type">String</span> jsonStr = <span class="keyword">new</span> <span class="type">Gson</span>().toJson(user);</span><br><span class="line">        <span class="keyword">return</span> jsonStr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>APIBaseService是一个抽象类，其他接口的服务类均继承此类即可。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.studyou.parchment.service;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 基本功能：服务器接口服务类</span><br><span class="line"> * 创建：王杰</span><br><span class="line"> * 创建时间：16/3/8</span><br><span class="line"> * 邮箱：w489657152<span class="doctag">@gmail</span>.com</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">APIBaseService</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getJsonData</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-从用户登录功能过程中总结的几个建议">2.从用户登录功能过程中总结的几个建议</h2><ul>
+<li>用户界面中的EditText要配置键盘，下一项或完成，使用android:imeOptions ，优化用户体验，是用户操作简单化，如：</li>
+</ul>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;EditText</span><br><span class="line">            android:id=<span class="string">"<span class="variable">@+</span>id/activity_login_account_et"</span></span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"<span class="variable">@dimen</span>/dp46"</span></span><br><span class="line">            android:layout_marginLeft=<span class="string">"<span class="variable">@dimen</span>/dp40"</span></span><br><span class="line">            android:layout_marginRight=<span class="string">"<span class="variable">@dimen</span>/dp40"</span></span><br><span class="line">            android:layout_marginTop=<span class="string">"<span class="variable">@dimen</span>/dp60"</span></span><br><span class="line">            android:background=<span class="string">"<span class="variable">@drawable</span>/shape_edittext_selector"</span></span><br><span class="line">            android:hint=<span class="string">"<span class="variable">@string</span>/account"</span></span><br><span class="line">            android:imeOptions=<span class="string">"actionNext"</span></span><br><span class="line">            android:singleLine=<span class="string">"true"</span></span><br><span class="line">            android:textColor=<span class="string">"<span class="variable">@android</span>:color/white"</span></span><br><span class="line">            android:textColorHint=<span class="string">"<span class="variable">@android</span>:color/white"</span></span><br><span class="line">            android:textSize=<span class="string">"<span class="variable">@dimen</span>/normal"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>访问网络接口不要使用自己封装的http工具，直接使用开源的okhttp或volley。</li>
+<li>解析json数据使用开源框架Gson或Jackson、fastjson，不要使用JsonObject直接解析。</li>
+<li>使用GsonFormat，可以根据json字符串直接生成java实体，提高效率。</li>
+<li>用户登录后的信息若存储到数据库，推荐使用Sqllite数据库框架GreenDao、ormlite、LitePal，我使用的是<a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external">LitePal</a>，感觉还不错。</li>
+<li>为提高效率，建议使用butterknife注解框架，就像Spring的注解一样，很方便。同时为AS安装butterknife插件。</li>
+<li>Android 一个改善的okHttp封装库，android大神之作，<br>项目地址：<a href="https://github.com/hongyangAndroid/okhttp-utils" target="_blank" rel="external">https://github.com/hongyangAndroid/okhttp-utils</a><br>博客地址：<a href="http://blog.csdn.net/lmj623565791/article/details/49734867" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/49734867</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-羊皮书APP（Android版）开发系列（七）Android沉浸通知栏" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/29/羊皮书APP（Android版）开发系列（七）Android沉浸通知栏/" class="article-date">
+  	<time datetime="2016-03-29T01:15:04.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/29/羊皮书APP（Android版）开发系列（七）Android沉浸通知栏/">羊皮书APP（Android版）开发系列（七）Android沉浸通知栏</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Android沉浸通知栏，有一个开源库<a href="https://github.com/jgilfelt/SystemBarTint" target="_blank" rel="external">SystemBarTint</a>,效果如下：<br><img src="http://img.blog.csdn.net/20160309105133513" alt="这里写图片描述"></p>
+</li>
+<li><p>使用方法：在Activity中添加相关代码，Demo如下：</p>
+</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MatchActionBarActivity</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Activity</span> &#123;</span>   </span><br><span class="line">  </span><br><span class="line">    <span class="annotation">@Override</span>  </span><br><span class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;  </span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </span><br><span class="line">        setContentView(<span class="type">R</span>.layout.activity_match_actionbar);  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">if</span> (<span class="type">Build</span>.<span class="type">VERSION</span>.<span class="type">SDK_INT</span> &gt;= <span class="type">Build</span>.<span class="type">VERSION_CODES</span>.<span class="type">KITKAT</span>) &#123;  </span><br><span class="line">            setTranslucentStatus(<span class="literal">true</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        <span class="type">SystemBarTintManager</span> tintManager = <span class="keyword">new</span> <span class="type">SystemBarTintManager</span>(<span class="keyword">this</span>);  </span><br><span class="line">        tintManager.setStatusBarTintEnabled(<span class="literal">true</span>);  </span><br><span class="line">        tintManager.setStatusBarTintResource(<span class="type">R</span>.color.statusbar_bg);<span class="comment">//通知栏所需颜色  </span></span><br><span class="line">  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="annotation">@TargetApi</span>(<span class="number">19</span>)   </span><br><span class="line">    <span class="keyword">private</span> void setTranslucentStatus(boolean on) &#123;  </span><br><span class="line">        <span class="type">Window</span> win = getWindow();  </span><br><span class="line">        <span class="type">WindowManager</span>.<span class="type">LayoutParams</span> winParams = win.getAttributes();  </span><br><span class="line">        <span class="keyword">final</span> int bits = <span class="type">WindowManager</span>.<span class="type">LayoutParams</span>.<span class="type">FLAG_TRANSLUCENT_STATUS</span>;  </span><br><span class="line">        <span class="keyword">if</span> (on) &#123;  </span><br><span class="line">            winParams.flags |= bits;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            winParams.flags &amp;= ~bits;  </span><br><span class="line">        &#125;  </span><br><span class="line">        win.setAttributes(winParams);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在APP中使用的时候，我们不要在每个Activity中都重复写这么一段代码，而是要自己定义一个基础的抽象Activity类，用于其他Activity继承，减少代码重复。这里给出我定义的一个基础抽象Activity类BaseActivity.java,代码如下：</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.studyou.parchment.activity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.annotation.<span class="type">TargetApi</span>;</span><br><span class="line"><span class="keyword">import</span> android.os.<span class="type">Build</span>;</span><br><span class="line"><span class="keyword">import</span> android.os.<span class="type">Bundle</span>;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.<span class="type">AppCompatActivity</span>;</span><br><span class="line"><span class="keyword">import</span> android.view.<span class="type">Window</span>;</span><br><span class="line"><span class="keyword">import</span> android.view.<span class="type">WindowManager</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.readystatesoftware.systembartint.<span class="type">SystemBarTintManager</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.studyou.parchment.<span class="type">R</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 基本功能：基础Activity类</span><br><span class="line"> * 创建：王杰</span><br><span class="line"> * 创建时间：16/3/9</span><br><span class="line"> * 邮箱：w489657152@gmail.com</span><br><span class="line"> */</span></span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">AppCompatActivity</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        <span class="keyword">if</span> (<span class="type">Build</span>.<span class="type">VERSION</span>.<span class="type">SDK_INT</span> &gt;= <span class="type">Build</span>.<span class="type">VERSION_CODES</span>.<span class="type">KITKAT</span>) &#123;</span><br><span class="line">            setTranslucentStatus(<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">SystemBarTintManager</span> tintManager = <span class="keyword">new</span> <span class="type">SystemBarTintManager</span>(<span class="keyword">this</span>);</span><br><span class="line">        tintManager.setStatusBarTintEnabled(<span class="literal">true</span>);</span><br><span class="line">        tintManager.setStatusBarTintResource(<span class="type">R</span>.color.green);<span class="comment">//通知栏所需颜色</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@TargetApi</span>(<span class="number">19</span>)</span><br><span class="line">    <span class="keyword">private</span> void setTranslucentStatus(boolean on) &#123;</span><br><span class="line">        <span class="type">Window</span> win = getWindow();</span><br><span class="line">        <span class="type">WindowManager</span>.<span class="type">LayoutParams</span> winParams = win.getAttributes();</span><br><span class="line">        <span class="keyword">final</span> int bits = <span class="type">WindowManager</span>.<span class="type">LayoutParams</span>.<span class="type">FLAG_TRANSLUCENT_STATUS</span>;</span><br><span class="line">        <span class="keyword">if</span> (on) &#123;</span><br><span class="line">            winParams.flags |= bits;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            winParams.flags &amp;= ~bits;</span><br><span class="line">        &#125;</span><br><span class="line">        win.setAttributes(winParams);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后每个Activity中继承BaseActivity即可，如下：</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.studyou.parchment.activity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.<span class="type">Bundle</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.studyou.parchment.<span class="type">R</span>;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">BaseActivity</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(<span class="type">R</span>.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后一步，要在布局文件中添加如下代码：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:clipToPadding=&#34;false&#34;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加后的布局文件代码形式如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">RelativeLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">android:background</span>=<span class="value">"@color/green"</span></span><br><span class="line">    <span class="attribute">android:fitsSystemWindows</span>=<span class="value">"true"</span></span><br><span class="line">    <span class="attribute">android:clipToPadding</span>=<span class="value">"false"</span></span><br><span class="line">    &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">Button</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></span><br><span class="line">        <span class="attribute">android:text</span>=<span class="value">"登录"</span></span><br><span class="line">        <span class="attribute">android:textSize</span>=<span class="value">"@dimen/normal"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-羊皮书APP（Android版）开发系列（一）Icon图片生成神器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1470,194 +1706,9 @@ public class AppIntroActivity extends AppIntro {
 
 
   
-    <article id="post-加盐hash保存密码的正确方式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/04/加盐hash保存密码的正确方式/" class="article-date">
-  	<time datetime="2016-03-04T01:19:55.000Z" itemprop="datePublished">2016-03-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/04/加盐hash保存密码的正确方式/">加盐hash保存密码的正确方式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>提醒：</li>
-</ul>
-<blockquote>
-<p>无论是web开发还是移动端开发，都会遇到设计用户系统的需求，用户系统最重要的方面就是如何保存用户的密码，通常大家会直接采用md5加密，md5加盐加密，sha1加密，sha1加盐加密等，虽然用户加密看起来很简单，但是会有很多人犯错，单纯的加密会有很多破解方式，如：字典暴力破解，双向查表等。 如果你打算自己写一段代码来进行密码hash，那么赶紧停下吧。这样太容易犯错了。这个提醒适用于每一个人，不要自己写密码的hash算法 ！关于保存密码的问题已经有了成熟的方案，那就是使用phpass或者本文提供的源码。</p>
-</blockquote>
-<ul>
-<li>Java Hash加密源码：
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/04/加盐hash保存密码的正确方式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Android通过Wifi调试程序" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/02/Android通过Wifi调试程序/" class="article-date">
-  	<time datetime="2016-03-02T07:45:49.000Z" itemprop="datePublished">2016-03-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/02/Android通过Wifi调试程序/">Android通过Wifi调试程序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：">很多时候使用数据线直接连接电脑显得很不方便，这个时候我们就可以考虑通过WIFI来调试我们的程序，具体方法如下：</h5><ol>
-<li>手机连接电脑，并且手机启用usb调试的模式，跟平常使用usb调试程序一样的步骤。</li>
-<li>进入android-sdk的文件夹，就是平时要你重启adb的地方，即：platform-tools，我的地址为:/Users/wangjie/wangjie/android-sdk/platform-tools</li>
-<li>打开命令行 adb tcpip 5555<blockquote>
-<p> 以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>以上这一句话的意思是adb从usb模式转化成adb网络模式（wifi）<br>命令行相应出现：restarting in TCP mode port: 5555，代表执行成功<br>你会发现，手机顶端不在出现原先有的图标  你会发现，手机顶端不在出现原先有的图标</p>
-</blockquote>
-</li>
-<li>使电脑连接手机的wifi的地址<blockquote>
-<p>打开手机连接wifi的地方，并得到wifi的地址。我的为：192.168.1.129<br>接着在上次一个步骤的命令行中输入 adb connect 192.168.1.129<br>出现：connected to 192.168.1.129:5555 代表执行成功</p>
-</blockquote>
-</li>
-<li>现在你可以断开usb线了（其实在第三步后，就可以断开了），然后像往常run一个应用程序，即可。</li>
-<li>此时你的usb对于此手机已经作废，那么如何变成usb试调模式呢？也就是还原呢。<blockquote>
-<p>很简单，usb数据线连接，在同一个命令行。输入<br>adb usb<br>出现：restarting in USB mode 说明成功。<br>还原原来的状态。</p>
-</blockquote>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-IOS多选折叠树（使用RATreeView实现）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/" class="article-date">
-  	<time datetime="2015-12-21T13:11:12.000Z" itemprop="datePublished">2015-12-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/">IOS多选折叠树（使用RATreeView实现）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>项目需求：要实现一个可折叠可多选的View，RATreeView库很不错，所以就借助RATreeView实现下这个多选折叠树，有类似需求的伙伴可以参考下。<br>（RATreeView地址：<a href="https://github.com/Augustyniak/RATreeView">https://github.com/Augustyniak/RATreeView</a>）<br>（此项目地址：<a href="https://github.com/wjie2014/RATreeViewForMultiSelected">https://github.com/wjie2014/RATreeViewForMultiSelected</a>）</p>
-</blockquote>
-<p><strong>效果图如下：</strong><br><img src="/images/000004.gif" alt="这是一张图片"></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/12/21/IOS多选折叠树（使用RATreeView实现）/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>

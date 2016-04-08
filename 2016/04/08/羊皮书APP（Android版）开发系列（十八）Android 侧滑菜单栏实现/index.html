@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现 | JeenWang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前几篇文章介绍的底部菜单栏、图片循环自动轮播都非常常用，底部菜单栏也很常用，底部菜单栏是iOS的主要风格，而Android的风格则偏向侧滑菜单栏。侧滑菜单栏也是很常用的，本篇为大家介绍下一个侧滑菜单栏，个人感觉很不错，这里只贴出关键的代码，学习下。
+
+首先定义一个Fragment，用来展示侧滑菜单，添加一些事件。FragmentDrawer代码如下：123456789101112131415161">
+<meta property="og:type" content="article">
+<meta property="og:title" content="羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现">
+<meta property="og:url" content="http://yoursite.com/2016/04/08/羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现/index.html">
+<meta property="og:site_name" content="JeenWang">
+<meta property="og:description" content="前几篇文章介绍的底部菜单栏、图片循环自动轮播都非常常用，底部菜单栏也很常用，底部菜单栏是iOS的主要风格，而Android的风格则偏向侧滑菜单栏。侧滑菜单栏也是很常用的，本篇为大家介绍下一个侧滑菜单栏，个人感觉很不错，这里只贴出关键的代码，学习下。
+
+首先定义一个Fragment，用来展示侧滑菜单，添加一些事件。FragmentDrawer代码如下：123456789101112131415161">
+<meta property="og:updated_time" content="2016-04-08T03:54:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现">
+<meta name="twitter:description" content="前几篇文章介绍的底部菜单栏、图片循环自动轮播都非常常用，底部菜单栏也很常用，底部菜单栏是iOS的主要风格，而Android的风格则偏向侧滑菜单栏。侧滑菜单栏也是很常用的，本篇为大家介绍下一个侧滑菜单栏，个人感觉很不错，这里只贴出关键的代码，学习下。
+
+首先定义一个Fragment，用来展示侧滑菜单，添加一些事件。FragmentDrawer代码如下：123456789101112131415161">
+  
+    <link rel="alternative" href="/atom.xml" title="JeenWang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars2.githubusercontent.com/u/7261696?v=3&amp;s=460" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">JeenWang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">每一天都很美好，我们要努力前行。</p>
+		
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/wjie2014" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/w489657152@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">JeenWang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars2.githubusercontent.com/u/7261696?v=3&amp;s=460" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">JeenWang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">每一天都很美好，我们要努力前行。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/wjie2014" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/w489657152@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/08/羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现/" class="article-date">
+  	<time datetime="2016-04-08T03:54:14.000Z" itemprop="datePublished">2016-04-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>前几篇文章介绍的底部菜单栏、图片循环自动轮播都非常常用，底部菜单栏也很常用，底部菜单栏是iOS的主要风格，而Android的风格则偏向侧滑菜单栏。侧滑菜单栏也是很常用的，本篇为大家介绍下一个侧滑菜单栏，个人感觉很不错，这里只贴出关键的代码，学习下。</p>
+</blockquote>
+<h3 id="首先定义一个Fragment，用来展示侧滑菜单，添加一些事件。FragmentDrawer代码如下：">首先定义一个Fragment，用来展示侧滑菜单，添加一些事件。FragmentDrawer代码如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.studyou.Fragment;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.Fragment;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.widget.DrawerLayout;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.ActionBarDrawerToggle;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.widget.LinearLayoutManager;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.widget.RecyclerView;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.widget.Toolbar;</span><br><span class="line"><span class="keyword">import</span> android.view.GestureDetector;</span><br><span class="line"><span class="keyword">import</span> android.view.LayoutInflater;</span><br><span class="line"><span class="keyword">import</span> android.view.MotionEvent;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.view.ViewGroup;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.studyou.Adapter.NavigationDrawerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.studyou.Entity.NavDrawerItem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FragmentDrawer</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String TAG = FragmentDrawer.class.getSimpleName();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> RecyclerView recyclerView;</span><br><span class="line">    <span class="keyword">private</span> ActionBarDrawerToggle mDrawerToggle;</span><br><span class="line">    <span class="keyword">private</span> DrawerLayout mDrawerLayout;</span><br><span class="line">    <span class="keyword">private</span> NavigationDrawerAdapter adapter;</span><br><span class="line">    <span class="keyword">private</span> View containerView;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String[] titles = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">private</span> FragmentDrawerListener drawerListener;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FragmentDrawer</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDrawerListener</span><span class="params">(FragmentDrawerListener listener)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.drawerListener = listener;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;NavDrawerItem&gt; <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;NavDrawerItem&gt; data = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// preparing navigation drawer items</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; titles.length; i++) &#123;</span><br><span class="line">            NavDrawerItem navItem = <span class="keyword">new</span> NavDrawerItem();</span><br><span class="line">            navItem.setTitle(titles[i]);</span><br><span class="line">            data.add(navItem);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// drawer labels</span></span><br><span class="line">        titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container,</span><br><span class="line">                             Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Inflating view layout</span></span><br><span class="line">        View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, <span class="keyword">false</span>);</span><br><span class="line">        recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);</span><br><span class="line"></span><br><span class="line">        adapter = <span class="keyword">new</span> NavigationDrawerAdapter(getActivity(), getData());</span><br><span class="line">        recyclerView.setAdapter(adapter);</span><br><span class="line">        recyclerView.setLayoutManager(<span class="keyword">new</span> LinearLayoutManager(getActivity()));</span><br><span class="line">        recyclerView.addOnItemTouchListener(<span class="keyword">new</span> RecyclerTouchListener(getActivity(), recyclerView, <span class="keyword">new</span> ClickListener() &#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">                drawerListener.onDrawerItemSelected(view, position);</span><br><span class="line">                mDrawerLayout.closeDrawer(containerView);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongClick</span><span class="params">(View view, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> layout;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">(<span class="keyword">int</span> fragmentId, DrawerLayout drawerLayout, <span class="keyword">final</span> Toolbar toolbar)</span> </span>&#123;</span><br><span class="line">        containerView = getActivity().findViewById(fragmentId);</span><br><span class="line">        mDrawerLayout = drawerLayout;</span><br><span class="line">        mDrawerToggle = <span class="keyword">new</span> ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) &#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDrawerOpened</span><span class="params">(View drawerView)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.onDrawerOpened(drawerView);</span><br><span class="line">                getActivity().invalidateOptionsMenu();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDrawerClosed</span><span class="params">(View drawerView)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.onDrawerClosed(drawerView);</span><br><span class="line">                getActivity().invalidateOptionsMenu();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDrawerSlide</span><span class="params">(View drawerView, <span class="keyword">float</span> slideOffset)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.onDrawerSlide(drawerView, slideOffset);</span><br><span class="line">                toolbar.setAlpha(<span class="number">1</span> - slideOffset / <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        mDrawerLayout.setDrawerListener(mDrawerToggle);</span><br><span class="line">        mDrawerLayout.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                mDrawerToggle.syncState();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">interface</span> <span class="title">ClickListener</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view, <span class="keyword">int</span> position)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongClick</span><span class="params">(View view, <span class="keyword">int</span> position)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">RecyclerTouchListener</span> <span class="keyword">implements</span> <span class="title">RecyclerView</span>.<span class="title">OnItemTouchListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> GestureDetector gestureDetector;</span><br><span class="line">        <span class="keyword">private</span> ClickListener clickListener;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">RecyclerTouchListener</span><span class="params">(Context context, <span class="keyword">final</span> RecyclerView recyclerView, <span class="keyword">final</span> ClickListener clickListener)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.clickListener = clickListener;</span><br><span class="line">            gestureDetector = <span class="keyword">new</span> GestureDetector(context, <span class="keyword">new</span> GestureDetector.SimpleOnGestureListener() &#123;</span><br><span class="line">                <span class="annotation">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onSingleTapUp</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="annotation">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">                    View child = recyclerView.findChildViewUnder(e.getX(), e.getY());</span><br><span class="line">                    <span class="keyword">if</span> (child != <span class="keyword">null</span> &amp;&amp; clickListener != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        clickListener.onLongClick(child, recyclerView.getChildPosition(child));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(RecyclerView rv, MotionEvent e)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            View child = rv.findChildViewUnder(e.getX(), e.getY());</span><br><span class="line">            <span class="keyword">if</span> (child != <span class="keyword">null</span> &amp;&amp; clickListener != <span class="keyword">null</span> &amp;&amp; gestureDetector.onTouchEvent(e)) &#123;</span><br><span class="line">                clickListener.onClick(child, rv.getChildPosition(child));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTouchEvent</span><span class="params">(RecyclerView rv, MotionEvent e)</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FragmentDrawerListener</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDrawerItemSelected</span><span class="params">(View view, <span class="keyword">int</span> position)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建对应的NavigationDrawerAdapter">创建对应的NavigationDrawerAdapter</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.studyou.Adapter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.widget.RecyclerView;</span><br><span class="line"><span class="keyword">import</span> android.view.LayoutInflater;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.view.ViewGroup;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.studyou.Fragment.R;</span><br><span class="line"><span class="keyword">import</span> com.studyou.Entity.NavDrawerItem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NavigationDrawerAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">NavigationDrawerAdapter</span>.<span class="title">MyViewHolder</span>&gt; </span>&#123;</span><br><span class="line">    List&lt;NavDrawerItem&gt; data = Collections.emptyList();</span><br><span class="line">    <span class="keyword">private</span> LayoutInflater inflater;</span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NavigationDrawerAdapter</span><span class="params">(Context context, List&lt;NavDrawerItem&gt; data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.context = context;</span><br><span class="line">        inflater = LayoutInflater.from(context);</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        data.remove(position);</span><br><span class="line">        notifyItemRemoved(position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.nav_drawer_row, parent, <span class="keyword">false</span>);</span><br><span class="line">        MyViewHolder holder = <span class="keyword">new</span> MyViewHolder(view);</span><br><span class="line">        <span class="keyword">return</span> holder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(MyViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        NavDrawerItem current = data.get(position);</span><br><span class="line">        holder.title.setText(current.getTitle());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">        TextView title;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MyViewHolder</span><span class="params">(View itemView)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(itemView);</span><br><span class="line">            title = (TextView) itemView.findViewById(R.id.title);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="在Activity中使用，MainActivity代码">在Activity中使用，MainActivity代码</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.studyou.Fragment;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.Fragment;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.FragmentManager;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.FragmentTransaction;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.widget.DrawerLayout;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.ActionBarActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.widget.Toolbar;</span><br><span class="line"><span class="keyword">import</span> android.view.Menu;</span><br><span class="line"><span class="keyword">import</span> android.view.MenuItem;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">ActionBarActivity</span> <span class="keyword">implements</span> <span class="title">FragmentDrawer</span>.<span class="title">FragmentDrawerListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Toolbar mToolbar;</span><br><span class="line">    <span class="keyword">private</span> FragmentDrawer drawerFragment;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        mToolbar = (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line"></span><br><span class="line">        setSupportActionBar(mToolbar);</span><br><span class="line">        getSupportActionBar().setDisplayShowHomeEnabled(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        drawerFragment = (FragmentDrawer)</span><br><span class="line">                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);</span><br><span class="line">        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);</span><br><span class="line">        drawerFragment.setDrawerListener(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// display the first navigation drawer view on app launch</span></span><br><span class="line">        displayView(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Inflate the menu; this adds items to the action bar if it is present.</span></span><br><span class="line">        getMenuInflater().inflate(R.menu.menu_main, menu);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Handle action bar item clicks here. The action bar will</span></span><br><span class="line">        <span class="comment">// automatically handle clicks on the Home/Up button, so long</span></span><br><span class="line">        <span class="comment">// as you specify a parent activity in AndroidManifest.xml.</span></span><br><span class="line">        <span class="keyword">int</span> id = item.getItemId();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//noinspection SimplifiableIfStatement</span></span><br><span class="line">        <span class="keyword">if</span> (id == R.id.action_settings) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (id == R.id.action_search)&#123;</span><br><span class="line">            Toast.makeText(getApplicationContext(), <span class="string">"Search action is selected!"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">return</span> <span class="keyword">super</span>.<span class="title">onOptionsItemSelected</span><span class="params">(item)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onDrawerItemSelected</span><span class="params">(View view, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        displayView(position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">displayView</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        Fragment fragment = <span class="keyword">null</span>;</span><br><span class="line">        String title = getString(R.string.app_name);</span><br><span class="line">        <span class="keyword">switch</span> (position) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                fragment = <span class="keyword">new</span> HomeFragment();</span><br><span class="line">                title = getString(R.string.title_home);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                fragment = <span class="keyword">new</span> FriendsFragment();</span><br><span class="line">                title = getString(R.string.title_friends);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                fragment = <span class="keyword">new</span> MessagesFragment();</span><br><span class="line">                title = getString(R.string.title_messages);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fragment != <span class="keyword">null</span>) &#123;</span><br><span class="line">            FragmentManager fragmentManager = getSupportFragmentManager();</span><br><span class="line">            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();</span><br><span class="line">            fragmentTransaction.replace(R.id.container_body, fragment);</span><br><span class="line">            fragmentTransaction.commit();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// set the toolbar title</span></span><br><span class="line">            getSupportActionBar().setTitle(title);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Activity中的代码也很简单，这个侧滑菜单主要的核心就在于FragmentDrawer和NavigationDrawerAdapter，大家可以认真的看下代码逻辑。</p>
+</blockquote>
+<p>源码可到github上下载，下载地址：<a href="https://github.com/wjie2014/Slide_Navigation" target="_blank" rel="external">https://github.com/wjie2014/Slide_Navigation</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/08/羊皮书APP（Android版）开发系列（十九）在ScrollView中使用ListView、GridView的方法 /" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          羊皮书APP（Android版）开发系列（十九）ScrollView中使用ListView、GridView的方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/08/羊皮书APP（Android版）开发系列（十七）Android 底部菜单栏实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">羊皮书APP（Android版）开发系列（十七）Android 底部菜单栏实现</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现" data-title="羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现" data-url="http://yoursite.com/2016/04/08/羊皮书APP（Android版）开发系列（十八）Android 侧滑菜单栏实现/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 JeenWang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
