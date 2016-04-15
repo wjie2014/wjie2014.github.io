@@ -118,6 +118,125 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-hexo发布博客到github，其他文件被删除问题解决" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决/" class="article-date">
+  	<time datetime="2015-11-12T13:07:19.000Z" itemprop="datePublished">2015-11-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决/">hexo d命令发布博客到github，其他文件被删除问题解决</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在hexo d发布到github时，会把其他的文件删除，比如我们的md文件或域名配置文件CNAME，解决办法很简单，如下：</p>
+<ul>
+<li>在source文件夹下新建一个md文件写入内容或CNAME文件写入域名，然后执行hexo d提交后就正常了。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-github默认域名绑定自己的域名" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/12/github默认域名绑定自己的域名/" class="article-date">
+  	<time datetime="2015-11-12T13:07:07.000Z" itemprop="datePublished">2015-11-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/12/github默认域名绑定自己的域名/">Github默认域名绑定自己的域名</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>在项目根目录下建立一文件，名为CNAME，里面写上域名，如app.com 或者在命令行里执行：</li>
+</ul>
+<blockquote>
+<p>$ echo ‘app.com’ &gt;&gt; source/CNAME</p>
+</blockquote>
+<ul>
+<li>去自己的域名运营商（我是name.com）处修改:</li>
+</ul>
+<blockquote>
+<p>CNAME: www.app.com =&gt; wjie2014.github.com</p>
+</blockquote>
+<ul>
+<li>注意：文中app请替换为自己的域名,wjie2014替换为自己的github名。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-在hexo的博客系统中写一篇文章并发布到github" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">

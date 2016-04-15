@@ -118,6 +118,250 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-羊皮书APP（Android版）开发系列（五）APP引导页实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/07/羊皮书APP（Android版）开发系列（五）APP引导页实现/" class="article-date">
+  	<time datetime="2016-03-07T12:06:20.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/羊皮书APP（Android版）开发系列（五）APP引导页实现/">羊皮书APP（Android版）开发系列（五）APP引导页实现</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>github上有一个引导页感觉不错，就拿来使用，地址：<a href="https://github.com/PaoloRotolo/AppIntro" target="_blank" rel="external">AppIntro</a></p>
+</blockquote>
+<ul>
+<li><p>导入AppIntro库的方法(两种)：</p>
+<ol>
+<li><p>方法一： 到github上下载AppIntro，解压，将library文件夹拷贝到自己项目的根目录下，重命名为app<strong><strong>intro</strong></strong>library，在settings.gradle文件中添加：include ‘:app’,’:app<strong>_</strong>intro<strong><strong>library’,在build.gradle文件中添加：    compile project(‘:app_</strong></strong>intro____library’)，重新编译后即可使用。</p>
+</li>
+<li><p>方法二： 直接在 build.gradle文件中添加如下代码：</p>
+</li>
+</ol>
+<pre><code>repositories {
+  mavenCentral()
+}
+dependencies {
+compile 'com.github.paolorotolo:appintro:3.4.0'
+}</code></pre>
+</li>
+<li><p>AppIntro的使用：</p>
+</li>
+</ul>
+<ul>
+<li>新建SlideFragment，展示介绍页面，代码如下：</li>
+</ul>
+<pre><code>package cn.studyou.parchment.fragment;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+/**
+ * 基本功能：引导页Fragment
+ * 创建：王杰
+ * 创建时间：16/3/7
+ * 邮箱：w489657152@gmail.com
+ */
+public class SlideFragment extends Fragment {
+    private static final String ARG_LAYOUT_RES_ID = "layoutResId";
+
+    public static SlideFragment newInstance(int layoutResId) {
+        SlideFragment slideFragment = new SlideFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(ARG_LAYOUT_RES_ID, layoutResId);
+        slideFragment.setArguments(args);
+
+        return slideFragment;
+    }
+
+    private int layoutResId;
+
+    public SlideFragment() {}
+
+    @Override
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID))
+            layoutResId = getArguments().getInt(ARG_LAYOUT_RES_ID);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
+        return inflater.inflate(layoutResId, container, false);
+    }
+}</code></pre>
+
+
+
+<ul>
+<li>新建AppIntroActivity继承自AppIntro，代码如下：</li>
+</ul>
+<pre><code>package cn.studyou.parchment.activity;
+
+import android.os.Bundle;
+
+import com.github.paolorotolo.appintro.AppIntro;
+
+import cn.studyou.parchment.R;
+import cn.studyou.parchment.fragment.SlideFragment;
+import cn.studyou.parchment.log.L;
+import cn.studyou.parchment.utils.IntentUtil;
+
+public class AppIntroActivity extends AppIntro {
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+
+        addSlide(SlideFragment.newInstance(R.layout.intro1));
+        addSlide(SlideFragment.newInstance(R.layout.intro2));
+        addSlide(SlideFragment.newInstance(R.layout.intro3));
+        addSlide(SlideFragment.newInstance(R.layout.intro4));
+        setBarColor(getResources().getColor(R.color.green));
+        setSeparatorColor(getResources().getColor(R.color.colorAccent));
+        setVibrateIntensity(30);
+        setSkipText(getString(R.string.skip));
+        setDoneText(getString(R.string.enter));
+    }
+
+    private void startMain(){
+        startActivity(IntentUtil.getLauncherIntent().setClass(getApplicationContext(),MainActivity.class));
+        finish();
+    }
+    @Override
+    public void onSkipPressed() {
+        L.e("onSkipPressed");
+        startMain();
+    }
+
+    @Override
+    public void onDonePressed() {
+        L.e("onDonePressed");
+        startMain();
+    }
+
+    @Override
+    public void onSlideChanged() {
+        L.e("onSlideChanged");
+    }
+
+    @Override
+    public void onNextPressed() {
+        L.e("onNextPressed");
+    }
+}</code></pre>
+
+
+
+<ul>
+<li>R.layout.intro1布局文件是你想要展示的APP介绍的页面。</li>
+<li>启动APP设置跳转到此Activity即可查看效果。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/04/解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题/" class="article-date">
+  	<time datetime="2016-03-04T01:27:53.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/04/解决Xcode 9.2系统真机测试时出现 could not find developer disk image问题/">解决Xcode could not find developer disk image问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>ios系统升级后总会出现和Xcode不匹配的问题，出现could not find developer disk image问题的解决办法是如下。</li>
+</ul>
+<ul>
+<li><p>下载相应版本的包拷贝到：/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport<br>目录下。完全关闭Xcode后，重启即可。如：iPhone手机的版本是9.2.1 (13D15)，下载9.2的包，拷贝到/Applications（应用程序）/Xcode（右键显示包内容）/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport下，重启。</p>
+</li>
+<li><p>提供几个版本包的下载地址：</p>
+</li>
+</ul>
+<p>9.2 开发包下载链接：<a href="http://download.csdn.net/detail/xieyupeng520/9386034" target="_blank" rel="external">http://download.csdn.net/detail/xieyupeng520/9386034</a><br>9.1 开发包下载链接：<a href="http://download.csdn.net/detail/xieyupeng520/9365277" target="_blank" rel="external">http://download.csdn.net/detail/xieyupeng520/9365277</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-加盐hash保存密码的正确方式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -599,125 +843,6 @@
 <blockquote>
 <p> hexo clean<br>hexo d</p>
 </blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-hexo发布博客到github，其他文件被删除问题解决" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决/" class="article-date">
-  	<time datetime="2015-11-12T13:07:19.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/hexo发布博客到github，其他文件被删除问题解决/">hexo d命令发布博客到github，其他文件被删除问题解决</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在hexo d发布到github时，会把其他的文件删除，比如我们的md文件或域名配置文件CNAME，解决办法很简单，如下：</p>
-<ul>
-<li>在source文件夹下新建一个md文件写入内容或CNAME文件写入域名，然后执行hexo d提交后就正常了。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-github默认域名绑定自己的域名" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/12/github默认域名绑定自己的域名/" class="article-date">
-  	<time datetime="2015-11-12T13:07:07.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/12/github默认域名绑定自己的域名/">Github默认域名绑定自己的域名</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>在项目根目录下建立一文件，名为CNAME，里面写上域名，如app.com 或者在命令行里执行：</li>
-</ul>
-<blockquote>
-<p>$ echo ‘app.com’ &gt;&gt; source/CNAME</p>
-</blockquote>
-<ul>
-<li>去自己的域名运营商（我是name.com）处修改:</li>
-</ul>
-<blockquote>
-<p>CNAME: www.app.com =&gt; wjie2014.github.com</p>
-</blockquote>
-<ul>
-<li>注意：文中app请替换为自己的域名,wjie2014替换为自己的github名。</li>
-</ul>
 
       
     </div>
